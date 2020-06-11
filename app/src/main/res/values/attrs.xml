@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleProgressBar">
+        <attr name="antiAlias" />
+        <attr name="startAngle" />
+        <attr name="sweepAngle" />
+        <attr name="animTime" />
+        <attr name="maxValue" />
+        <attr name="unit" />
+        <attr name="unitSize" />
+        <attr name="unitColor" />
+        <attr name="hint" />
+        <attr name="hintSize" />
+        <attr name="hintColor" />
+        <attr name="precision" />
+        <attr name="value" />
+        <attr name="valueSize" />
+        <attr name="valueColor" />
+        <attr name="valueUnitSize" />
+        <attr name="bgArcColor" />
+        <attr name="pointerColor" />
+        <attr name="arcWidth" />
+        <attr name="arcColors" />
+        <attr name="textOffsetPercentInRadius" />
+        <attr name="bgArcWidth" />
+        <attr name="dottedLineCount" />
+        <attr name="lineDistance" />
+        <attr name="dottedLineWidth" />
+        <attr name="foreStartColor" />
+        <attr name="foreEndColor" />
+        <attr name="drawbleIcon" />
+    </declare-styleable>
+
+</resources>
