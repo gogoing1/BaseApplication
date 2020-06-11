@@ -34,6 +34,13 @@
                 android:background="@drawable/shape_default_btn_style"
                 android:text="旋钮" />
 
+            <Button
+                android:id="@+id/btn_lyric"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_default_btn_style"
+                android:text="歌词" />
+
         </LinearLayout>
     </ScrollView>
 

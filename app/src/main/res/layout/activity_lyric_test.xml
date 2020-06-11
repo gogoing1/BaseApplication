@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue">
+
+    <TextView
+        android:id="@+id/tv_cur_lyric_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/color_white" />
+
+    <me.zhengken.lyricview.LyricView
+        android:id="@+id/custom_lyric_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="50px"
+        android:layout_marginTop="190px"
+        android:layout_marginRight="50px"
+        android:layout_marginBottom="90px"
+        android:layout_weight="1"
+        app:highlightColor="@color/color_white"
+        app:lineSpace="40px"
+        app:textColor="@color/color_white_30"
+        app:textSize="32px" />
+
+
+</RelativeLayout>

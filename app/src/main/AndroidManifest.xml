@@ -3,6 +3,8 @@
     package="com.example.chenq">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.chenq.MainActivity"
-            >
+        <activity android:name="com.example.chenq.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +22,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.example.chenq.activity.CircleProgressActivity"
-            android:theme="@style/SlidableTheme"/>
+        <activity
+            android:name="com.example.chenq.activity.CircleProgressActivity"
+            android:theme="@style/SlidableTheme" />
+
+        <activity
+            android:name=".activity.LyricActivity"
+            android:theme="@style/SlidableTheme" />
 
     </application>
 
