@@ -1,4 +1,4 @@
-package com.example.myapplication.UI;
+package com.example.chenq.UI;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -21,9 +21,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
-import com.example.myapplication.R;
-import com.example.myapplication.base.Interface.AnimatorListenerImpl;
-import com.example.myapplication.base.utils.LogUtil;
+import com.example.chenq.R;
+import com.example.chenq.base.Interface.AnimatorListenerImpl;
+import com.example.chenq.base.util.LogUtil;
 
 /**
  * 旋钮 自定义View
@@ -31,6 +31,7 @@ import com.example.myapplication.base.utils.LogUtil;
 public class CircleProgress extends View {
 
     private static final String TAG = CircleProgress.class.getSimpleName();
+    private static boolean isLandScape = false;
     private boolean isDebug = true;
     private Context mContext;
 
@@ -189,7 +190,7 @@ public class CircleProgress extends View {
         mPrecision = typedArray.getInt(R.styleable.CircleProgressBar_precision, 0);
         mPrecisionFormat = getPrecisionFormat(mPrecision);
         mValueColor = typedArray.getColor(R.styleable.CircleProgressBar_valueColor, Color.BLACK);
-        mValueSize = typedArray.getDimension(R.styleable.CircleProgressBar_valueSize, 15);
+        mValueSize = typedArray.getDimensionPixelSize(R.styleable.CircleProgressBar_valueSize, 15);
         valueUnitSize = typedArray.getDimension(R.styleable.CircleProgressBar_valueUnitSize, 15);
 
         mUnit = typedArray.getString(R.styleable.CircleProgressBar_unit);
@@ -299,60 +300,62 @@ public class CircleProgress extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Log.d(TAG, "onSizeChanged: w = " + w + "; h = " + h + "; oldw = " + oldw + "; oldh = " + oldh);
+        isLandScape = w > h ? true : false;
         mCenterPoint.x = w / 2;
         mCenterPoint.y = h / 2;
 
-        mPadding = (int) (h * 0.08 / 2);
-        mOuterBgRadius = (int) (h * 0.92 / 2);
-        mMidBgRadius = (int) (h * 0.772 / 2);
-        mMidRainbowRadius = (int) ((h * 0.60 / 2) + rainbowWidth / 2);
-        mInnerBgRadius = (int) (h * 0.521 / 2);
-        mInnerRainRadius = (int) (h * 0.4 / 2);
+        int length = isLandScape ? h : w;
+        mPadding = (int) (length * 0.08 / 2);
+        mOuterBgRadius = (int) (length * 0.92 / 2);
+        mMidBgRadius = (int) (length * 0.772 / 2);
+        mMidRainbowRadius = (int) ((length * 0.60 / 2) + rainbowWidth / 2);
+        mInnerBgRadius = (int) (length * 0.521 / 2);
+        mInnerRainRadius = (int) (length * 0.4 / 2);
 
-        {
-            //求圆弧和背景圆弧的最大宽度
-            float maxArcWidth = Math.max(mArcWidth, mBgArcWidth);
 
-            //求最小值作为实际值
-            int minSize = Math.min(
-                    w - getPaddingLeft() - getPaddingRight() - 2 * (int) maxArcWidth,
-                    h - getPaddingTop() - getPaddingBottom() - 2 * (int) maxArcWidth);
+        //求圆弧和背景圆弧的最大宽度
+        float maxArcWidth = Math.max(mArcWidth, mBgArcWidth);
 
-            //减去圆弧的宽度，否则会造成部分圆弧绘制在外围
-            mRadius = minSize / 2;
+        //求最小值作为实际值
+        int minSize = Math.min(
+                w - getPaddingLeft() - getPaddingRight() - 2 * (int) maxArcWidth,
+                h - getPaddingTop() - getPaddingBottom() - 2 * (int) maxArcWidth);
 
-            //绘制圆弧的边界
-            // mRectF.left = mCenterPoint.x - mRadius - maxArcWidth / 2;
-            // mRectF.top = mCenterPoint.y - mRadius - maxArcWidth / 2;
-            // mRectF.right = mCenterPoint.x + mRadius + maxArcWidth / 2;
-            // mRectF.bottom = mCenterPoint.y + mRadius + maxArcWidth / 2;
+        //减去圆弧的宽度，否则会造成部分圆弧绘制在外围
+        mRadius = minSize / 2;
 
-            mRectF.set(84, 84, w - 84, h - 84);
-            mBitmapRectF.set(84, 84, w - 84, h - 84);
+        //绘制圆弧的边界
+        // mRectF.left = mCenterPoint.x - mRadius - maxArcWidth / 2;
+        // mRectF.top = mCenterPoint.y - mRadius - maxArcWidth / 2;
+        // mRectF.right = mCenterPoint.x + mRadius + maxArcWidth / 2;
+        // mRectF.bottom = mCenterPoint.y + mRadius + maxArcWidth / 2;
 
-            //计算文字绘制时的 baseline,由于文字的baseline、descent、ascent等属性只与textSize和typeface有关，所以此时可以直接计算
-            //若value、hint、unit由同一个画笔绘制或者需要动态设置文字的大小，则需要在每次更新后再次计算
-            mValueOffset = mCenterPoint.y + getBaselineOffsetFromY(mValuePaint);
+        mRectF.set(84, 84, w - 84, h - 84);
+        mBitmapRectF.set(84, 84, w - 84, h - 84);
 
-            mHintOffset = mCenterPoint.y - mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mHintPaint);
-            mUnitOffset = mCenterPoint.y + mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mUnitPaint);
+        //计算文字绘制时的 baseline,由于文字的baseline、descent、ascent等属性只与textSize和typeface有关，所以此时可以直接计算
+        //若value、hint、unit由同一个画笔绘制或者需要动态设置文字的大小，则需要在每次更新后再次计算
+        mValueOffset = mCenterPoint.y + getBaselineOffsetFromY(mValuePaint);
 
-            //图标的坐标
-            mImgLeftSet = mCenterPoint.x - defBitmap.getWidth() / 2;
-            mImgTopSet = mUnitOffset + 18;
+        mHintOffset = mCenterPoint.y - mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mHintPaint);
+        mUnitOffset = mCenterPoint.y + mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mUnitPaint);
 
-            if (useGradient) {
-                LinearGradient gradient = new LinearGradient(0, 0, w, h, foreEndColor, foreStartColor, Shader.TileMode.CLAMP);
-                mArcPaint.setShader(gradient);
-            } else {
-                mArcPaint.setColor(mArcColor);
-            }
+        //图标的坐标
+        mImgLeftSet = mCenterPoint.x - defBitmap.getWidth() / 2;
+        mImgTopSet = mUnitOffset + 18;
 
-            Log.d(TAG, "onSizeChanged: 控件大小 = " + "(" + w + ", " + h + ")"
-                    + "圆心坐标 = " + mCenterPoint.toString()
-                    + ";圆半径 = " + mRadius
-                    + ";圆的外接矩形 = " + mRectF.toString());
+        if (useGradient) {
+            LinearGradient gradient = new LinearGradient(0, 0, w, h, foreEndColor, foreStartColor, Shader.TileMode.CLAMP);
+            mArcPaint.setShader(gradient);
+        } else {
+            mArcPaint.setColor(mArcColor);
         }
+
+        Log.d(TAG, "onSizeChanged: 控件大小 = " + "(" + w + ", " + h + ")"
+                + "圆心坐标 = " + mCenterPoint.toString()
+                + ";圆半径 = " + mRadius
+                + ";圆的外接矩形 = " + mRectF.toString());
+
 
         mOuterBgDrawable.setBounds(
                 mCenterPoint.x - mOuterBgRadius, mPadding,
@@ -434,7 +437,7 @@ public class CircleProgress extends View {
         //百分比
         //Rect mProgressRect = new Rect();
         //mValuePaint.getTextBounds(String.valueOf(mValue), 0, String.valueOf(mValue).length(), mProgressRect);
-        //canvas.drawText(String.format(mPrecisionFormat, mValue), mCenterPoint.x, mValueOffset, mValuePaint);
+        canvas.drawText(String.format(mPrecisionFormat, mValue), mCenterPoint.x, mValueOffset, mValuePaint);
 
         //提示
         if (mHint != null) {

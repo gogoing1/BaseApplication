@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.chenq;
 
 import org.junit.Test;
 

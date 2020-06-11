@@ -1,4 +1,4 @@
-package com.example.myapplication.UI;
+package com.example.chenq.UI;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,7 +15,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.example.myapplication.R;
+import com.example.chenq.R;
 
 /**
  * create by chenqi on 2020/6/1
