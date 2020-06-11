@@ -28,9 +28,9 @@ import com.example.chenq.base.util.LogUtil;
 /**
  * 旋钮 自定义View
  */
-public class CircleProgress extends View {
+public class CircleProgressView extends View {
 
-    private static final String TAG = CircleProgress.class.getSimpleName();
+    private static final String TAG = CircleProgressView.class.getSimpleName();
     private static boolean isLandScape = false;
     private boolean isDebug = true;
     private Context mContext;
@@ -142,7 +142,7 @@ public class CircleProgress extends View {
     private float curRotateDegrees;
 
 
-    public CircleProgress(Context context, AttributeSet attrs) {
+    public CircleProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
@@ -503,13 +503,6 @@ public class CircleProgress extends View {
      */
     public void onProgressChange(int progress) {
         mValue = progress;
-//        mValue += progress;
-//        if (mValue < 0) {
-//            mValue = 0;
-//        }
-//        if (mValue > 100) {
-//            mValue = 100;
-//        }
         refreshView((int) mValue);
     }
 
