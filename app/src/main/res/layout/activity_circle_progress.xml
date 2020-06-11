@@ -4,9 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@mipmap/bg"
     tools:context=".MainActivity"
     tools:ignore="ResAuto">
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blur_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:realtimeBlurRadius="20dp"
+        app:realtimeOverlayColor="#B3DEE9FF" />
 
     <com.example.chenq.UI.CircleProgressView
         android:id="@+id/circle_progress"
