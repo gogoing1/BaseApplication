@@ -32,4 +32,9 @@
         <attr name="drawbleIcon" />
     </declare-styleable>
 
+    <declare-styleable name="GradientView">
+        <attr name="from" format="color" />
+        <attr name="to" format="color" />
+        <attr name="direct" format="string" />
+    </declare-styleable>
 </resources>

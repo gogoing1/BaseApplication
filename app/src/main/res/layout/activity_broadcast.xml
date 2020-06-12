@@ -4,54 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context=".MainActivity"
+    android:background="@color/color_white"
     tools:ignore="ResAuto">
 
-    <!--自定义进度条-->
-    <com.example.chenq.UI.MusicProgressBar
-        android:id="@+id/mpb"
-        android:layout_width="match_parent"
-        android:layout_height="5px"
+    <com.example.chenq.UI.GradientColorTextView
+        android:id="@+id/temperature_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone" />
+        android:includeFontPadding="false"
+        android:text="28%"
+        android:textSize="150dp"
+        app:direct="V"
+        app:from="#FFFFD425"
+        app:to="#FFFF4C82" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="60dp">
-
-            <Button
-                android:id="@+id/btn_circle_progress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="旋钮"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_lyric"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="歌词"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_broadcast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="broadcast" />
-        </LinearLayout>
-    </ScrollView>
 
 </RelativeLayout>

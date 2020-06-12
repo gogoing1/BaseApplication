@@ -30,14 +30,14 @@ public final class BroadcastActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast);
 
-        BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                Log.d(TAG, "mBroadcastReceiver onReceived action :" + intent.getAction());
-                intent.getAction();
-
-            }
-        };
+//        BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                Log.d(TAG, "mBroadcastReceiver onReceived action :" + intent.getAction());
+//                intent.getAction();
+//
+//            }
+//        };
     }
 
 }
