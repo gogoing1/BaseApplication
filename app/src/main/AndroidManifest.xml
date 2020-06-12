@@ -30,6 +30,10 @@
             android:name=".activity.LyricActivity"
             android:theme="@style/SlidableTheme" />
 
+        <activity
+            android:name=".activity.BroadcastActivity"
+            android:theme="@style/SlidableTheme" />
+
     </application>
 
 </manifest>

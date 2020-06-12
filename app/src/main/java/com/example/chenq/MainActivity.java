@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.LyricActivity;
 import com.example.chenq.base.activity.BaseActivity;
@@ -19,6 +20,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mCircleProgressBtn;
     private Button mLyricBtn;
+    private Button mBroadcastBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCircleProgressBtn.setOnClickListener(this);
         mLyricBtn = findViewById(R.id.btn_lyric);
         mLyricBtn.setOnClickListener(this);
+        mBroadcastBtn = findViewById(R.id.btn_broadcast);
+        mBroadcastBtn.setOnClickListener(this);
     }
 
     @Override
@@ -43,9 +47,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.btn_lyric:
                 LyricActivity.start(this);
                 break;
+            case R.id.btn_broadcast:
+                BroadcastActivity.start(this);
+                break;
             default:
                 break;
-
         }
     }
 }
