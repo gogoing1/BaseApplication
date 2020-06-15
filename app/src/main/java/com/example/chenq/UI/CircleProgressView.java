@@ -36,16 +36,7 @@ public class CircleProgressView extends View {
     private static final String TAG = CircleProgressView.class.getSimpleName();
     private boolean isDebug = true;
     private Context mContext;
-
-    public static final int DEFAULT_PROGRESS = 50;
-
-    //提示
-    private TextPaint mHintPaint;
-    private CharSequence mHint;
-    private int mHintColor;
-    private float mHintSize;
-    private float mHintOffset;
-
+    private final int DEFAULT_PROGRESS = 50;
     //单位(亮度)
     private TextPaint mUnitPaint;
     private CharSequence mUnit;
@@ -176,13 +167,7 @@ public class CircleProgressView extends View {
 
     private void initAttrs(AttributeSet attrs) {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.CircleProgressBar);
-
         antiAlias = typedArray.getBoolean(R.styleable.CircleProgressBar_antiAlias, true);
-
-        mHint = typedArray.getString(R.styleable.CircleProgressBar_hint);
-        mHintColor = typedArray.getColor(R.styleable.CircleProgressBar_hintColor, Color.BLACK);
-        mHintSize = typedArray.getDimension(R.styleable.CircleProgressBar_hintSize, 15);
-
         mValue = typedArray.getFloat(R.styleable.CircleProgressBar_value, 50);
         mMaxValue = typedArray.getFloat(R.styleable.CircleProgressBar_maxValue, 50);
         //内容数值精度格式
@@ -218,15 +203,15 @@ public class CircleProgressView extends View {
     }
 
     private void initPaint() {
-        mHintPaint = new TextPaint();
-        // 设置抗锯齿,会消耗较大资源，绘制图形速度会变慢。
-        mHintPaint.setAntiAlias(antiAlias);
-        // 设置绘制文字大小
-        mHintPaint.setTextSize(mHintSize);
-        // 设置画笔颜色
-        mHintPaint.setColor(mHintColor);
-        // 从中间向两边绘制，不需要再次计算文字
-        mHintPaint.setTextAlign(Paint.Align.CENTER);
+//        mHintPaint = new TextPaint();
+//        // 设置抗锯齿,会消耗较大资源，绘制图形速度会变慢。
+//        mHintPaint.setAntiAlias(antiAlias);
+//        // 设置绘制文字大小
+//        mHintPaint.setTextSize(mHintSize);
+//        // 设置画笔颜色
+//        mHintPaint.setColor(mHintColor);
+//        // 从中间向两边绘制，不需要再次计算文字
+//        mHintPaint.setTextAlign(Paint.Align.CENTER);
 
         mValuePaint = new TextPaint();
         mValuePaint.setAntiAlias(antiAlias);
@@ -323,7 +308,7 @@ public class CircleProgressView extends View {
         //计算文字绘制时的 baseline,由于文字的baseline、descent、ascent等属性只与textSize和typeface有关，所以此时可以直接计算
         //若value、hint、unit由同一个画笔绘制或者需要动态设置文字的大小，则需要在每次更新后再次计算
         mValueOffset = mCenterPoint.y + getBaselineOffsetFromY(mValuePaint);
-        mHintOffset = mCenterPoint.y - mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mHintPaint);
+        //mHintOffset = mCenterPoint.y - mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mHintPaint);
         mUnitOffset = mCenterPoint.y + mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mUnitPaint);
         //图标的坐标
         mImgLeftSet = mCenterPoint.x - defBitmap.getWidth() / 2;
@@ -422,10 +407,6 @@ public class CircleProgressView extends View {
     private void drawText(Canvas canvas) {
         //百分比
         canvas.drawText(String.format(mPrecisionFormat, mValue), mCenterPoint.x, mValueOffset, mValuePaint);
-        //提示
-        if (mHint != null) {
-            canvas.drawText(mHint.toString(), mCenterPoint.x, mHintOffset, mHintPaint);
-        }
         //单位
         if (mUnit != null) {
             canvas.drawText(mUnit.toString(), mCenterPoint.x, mUnitOffset, mUnitPaint);
