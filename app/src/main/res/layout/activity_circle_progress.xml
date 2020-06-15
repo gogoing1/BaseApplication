@@ -44,7 +44,7 @@
         app:unit="亮度"
         app:unitColor="#CDC9C4"
         app:unitSize="13dp"
-        app:value="100"
+        app:value="50"
         app:valueColor="#FFFFB53B"
         app:valueSize="46sp"
         app:valueUnitSize="50px" />

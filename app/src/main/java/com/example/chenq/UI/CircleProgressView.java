@@ -8,11 +8,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
@@ -23,7 +24,9 @@ import android.view.animation.DecelerateInterpolator;
 
 import com.example.chenq.R;
 import com.example.chenq.base.Interface.AnimatorListenerImpl;
+import com.example.chenq.base.util.DrawableUtil;
 import com.example.chenq.base.util.LogUtil;
+
 
 /**
  * 旋钮 自定义View
@@ -31,7 +34,6 @@ import com.example.chenq.base.util.LogUtil;
 public class CircleProgressView extends View {
 
     private static final String TAG = CircleProgressView.class.getSimpleName();
-    private static boolean isLandScape = false;
     private boolean isDebug = true;
     private Context mContext;
 
@@ -89,8 +91,6 @@ public class CircleProgressView extends View {
     private int mLineDistance = 20;
     //线条长度
     private float mDottedLineLength = 40;
-    //是否使用渐变
-    protected boolean useGradient = true;
     // 内部虚线的外部半径
     private float mExternalDottedLineRadius;
     // 内部虚线的内部半径
@@ -124,7 +124,7 @@ public class CircleProgressView extends View {
     private Drawable mOuterBgDrawable;
     private Drawable mMidBgDrawable;
     private Drawable mMidRainbowDrawable;
-    private Bitmap mMidRainBowBitmap;
+    //private Bitmap mMidRainBowBitmap;
     private Drawable mInnerBgDrawable;
     private float perDegrees;
     private float startDegrees;
@@ -167,11 +167,10 @@ public class CircleProgressView extends View {
     }
 
     private void initResource() {
-        mOuterBgDrawable = getDrawable(mContext, R.mipmap.knob_outer_bg_icon);
-        mMidBgDrawable = getDrawable(mContext, R.mipmap.knob_mid_bg_icon);
-        mMidRainbowDrawable = getDrawable(mContext, R.mipmap.knob_mid_rainbow_icon);
-        mMidRainBowBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.knob_mid_rainbow_icon);
-        mInnerBgDrawable = getDrawable(mContext, R.mipmap.knob_inner_bg_icon);
+        mOuterBgDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.knob_outer_bg_icon);
+        mMidBgDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.knob_mid_bg_icon);
+        mMidRainbowDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.knob_mid_rainbow_icon);
+        mInnerBgDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.knob_inner_bg_icon);
     }
 
 
@@ -190,7 +189,7 @@ public class CircleProgressView extends View {
         mPrecision = typedArray.getInt(R.styleable.CircleProgressBar_precision, 0);
         mPrecisionFormat = getPrecisionFormat(mPrecision);
         mValueColor = typedArray.getColor(R.styleable.CircleProgressBar_valueColor, Color.BLACK);
-        mValueSize = typedArray.getDimensionPixelSize(R.styleable.CircleProgressBar_valueSize, 15);
+        mValueSize = typedArray.getDimension(R.styleable.CircleProgressBar_valueSize, 15);
         valueUnitSize = typedArray.getDimension(R.styleable.CircleProgressBar_valueUnitSize, 15);
 
         mUnit = typedArray.getString(R.styleable.CircleProgressBar_unit);
@@ -240,6 +239,8 @@ public class CircleProgressView extends View {
         mUnitPaint = new TextPaint();
         mUnitPaint.setAntiAlias(antiAlias);
         mUnitPaint.setTextSize(mUnitSize);
+        mUnitPaint.setStrokeWidth(1.6f);
+        mUnitPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         mUnitPaint.setColor(mUnitColor);
         mUnitPaint.setTextAlign(Paint.Align.CENTER);
 
@@ -300,76 +301,43 @@ public class CircleProgressView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Log.d(TAG, "onSizeChanged: w = " + w + "; h = " + h + "; oldw = " + oldw + "; oldh = " + oldh);
-        isLandScape = w > h ? true : false;
         mCenterPoint.x = w / 2;
         mCenterPoint.y = h / 2;
 
-        int length = isLandScape ? h : w;
-        mPadding = (int) (length * 0.08 / 2);
-        mOuterBgRadius = (int) (length * 0.92 / 2);
-        mMidBgRadius = (int) (length * 0.772 / 2);
-        mMidRainbowRadius = (int) ((length * 0.60 / 2) + rainbowWidth / 2);
-        mInnerBgRadius = (int) (length * 0.521 / 2);
-        mInnerRainRadius = (int) (length * 0.4 / 2);
-
-
+        mPadding = (int) (h * 0.08 / 2);
+        mOuterBgRadius = (int) (h * 0.92 / 2);
+        mMidBgRadius = (int) (h * 0.772 / 2);
+        mMidRainbowRadius = (int) ((h * 0.60 / 2) + rainbowWidth / 2);
+        mInnerBgRadius = (int) (h * 0.521 / 2);
+        mInnerRainRadius = (int) (h * 0.4 / 2);
         //求圆弧和背景圆弧的最大宽度
         float maxArcWidth = Math.max(mArcWidth, mBgArcWidth);
-
         //求最小值作为实际值
         int minSize = Math.min(
                 w - getPaddingLeft() - getPaddingRight() - 2 * (int) maxArcWidth,
                 h - getPaddingTop() - getPaddingBottom() - 2 * (int) maxArcWidth);
-
         //减去圆弧的宽度，否则会造成部分圆弧绘制在外围
         mRadius = minSize / 2;
-
-        //绘制圆弧的边界
-        // mRectF.left = mCenterPoint.x - mRadius - maxArcWidth / 2;
-        // mRectF.top = mCenterPoint.y - mRadius - maxArcWidth / 2;
-        // mRectF.right = mCenterPoint.x + mRadius + maxArcWidth / 2;
-        // mRectF.bottom = mCenterPoint.y + mRadius + maxArcWidth / 2;
-
         mRectF.set(84, 84, w - 84, h - 84);
         mBitmapRectF.set(84, 84, w - 84, h - 84);
-
         //计算文字绘制时的 baseline,由于文字的baseline、descent、ascent等属性只与textSize和typeface有关，所以此时可以直接计算
         //若value、hint、unit由同一个画笔绘制或者需要动态设置文字的大小，则需要在每次更新后再次计算
         mValueOffset = mCenterPoint.y + getBaselineOffsetFromY(mValuePaint);
-
         mHintOffset = mCenterPoint.y - mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mHintPaint);
         mUnitOffset = mCenterPoint.y + mInnerRainRadius * mTextOffsetPercentInRadius + getBaselineOffsetFromY(mUnitPaint);
-
         //图标的坐标
         mImgLeftSet = mCenterPoint.x - defBitmap.getWidth() / 2;
         mImgTopSet = mUnitOffset + 18;
-
-        if (useGradient) {
-            LinearGradient gradient = new LinearGradient(0, 0, w, h, foreEndColor, foreStartColor, Shader.TileMode.CLAMP);
-            mArcPaint.setShader(gradient);
-        } else {
-            mArcPaint.setColor(mArcColor);
-        }
-
-        Log.d(TAG, "onSizeChanged: 控件大小 = " + "(" + w + ", " + h + ")"
-                + "圆心坐标 = " + mCenterPoint.toString()
-                + ";圆半径 = " + mRadius
-                + ";圆的外接矩形 = " + mRectF.toString());
-
+        Log.d(TAG, "onSizeChanged: 控件大小 = " + "(" + w + ", " + h + ")" + "圆心坐标 = " + mCenterPoint.toString() + ";圆半径 = " + mRadius + ";圆的外接矩形 = " + mRectF.toString());
 
         mOuterBgDrawable.setBounds(
-                mCenterPoint.x - mOuterBgRadius, mPadding,
-                mCenterPoint.x + mOuterBgRadius, mCenterPoint.y + mOuterBgRadius);
+                mCenterPoint.x - mOuterBgRadius, mPadding, mCenterPoint.x + mOuterBgRadius, mCenterPoint.y + mOuterBgRadius);
         mMidBgDrawable.setBounds(
-                mCenterPoint.x - mMidBgRadius, mCenterPoint.y - mMidBgRadius,
-                mCenterPoint.x + mMidBgRadius, mCenterPoint.y + mMidBgRadius);
+                mCenterPoint.x - mMidBgRadius, mCenterPoint.y - mMidBgRadius, mCenterPoint.x + mMidBgRadius, mCenterPoint.y + mMidBgRadius);
         mMidRainbowDrawable.setBounds(
-                mCenterPoint.x - mMidRainbowRadius, mCenterPoint.y - mMidRainbowRadius,
-                mCenterPoint.x + mMidRainbowRadius, mCenterPoint.y + mMidRainbowRadius);
+                mCenterPoint.x - mMidRainbowRadius, mCenterPoint.y - mMidRainbowRadius, mCenterPoint.x + mMidRainbowRadius, mCenterPoint.y + mMidRainbowRadius);
         mInnerBgDrawable.setBounds(
-                mCenterPoint.x - mInnerBgRadius, mCenterPoint.y - mInnerBgRadius,
-                mCenterPoint.x + mInnerBgRadius, mCenterPoint.y + mInnerBgRadius);
-
+                mCenterPoint.x - mInnerBgRadius, mCenterPoint.y - mInnerBgRadius, mCenterPoint.x + mInnerBgRadius, mCenterPoint.y + mInnerBgRadius);
         //虚线弧外圈半径
         mExternalDottedLineRadius = (float) (mInnerRainRadius - 24);
         //虚线弧内圈半径
@@ -389,30 +357,48 @@ public class CircleProgressView extends View {
         super.onDraw(canvas);
         //外圈
         mOuterBgDrawable.draw(canvas);
-
         canvas.save();
         // - 3 是调试过程中产生的误差
         canvas.rotate(curRotateDegrees - 3, mCenterPoint.x, mCenterPoint.y);
         //中圈
         mMidBgDrawable.draw(canvas);
-        //彩虹条
-        mMidRainbowDrawable.draw(canvas);
         canvas.restore();
-
+        //彩虹条
+        //mMidRainbowDrawable.draw(canvas);
+        drawRainbow(canvas);
         //内圈
         mInnerBgDrawable.draw(canvas);
-
         //logo
         drawBottomImage(canvas);
-
         //百分比
         drawText(canvas);
-
         //虚线
         drawArc(canvas);
-
         //指针
         drawPointer(canvas);
+    }
+
+    /**
+     * 彩虹条
+     *
+     * @param canvas
+     */
+    private void drawRainbow(Canvas canvas) {
+        SweepGradient gradient = new SweepGradient(
+                mCenterPoint.x, mCenterPoint.y,
+                new int[]{getResources().getColor(R.color.color_rainbow_1), getResources().getColor(R.color.color_rainbow_2),
+                        getResources().getColor(R.color.color_rainbow_3), getResources().getColor(R.color.color_rainbow_4),
+                        getResources().getColor(R.color.color_rainbow_5), getResources().getColor(R.color.color_rainbow_7),
+                        getResources().getColor(R.color.color_rainbow_8), getResources().getColor(R.color.color_rainbow_9)}, null);
+        Matrix matrix = new Matrix();
+        matrix.setRotate(60, mCenterPoint.x, mCenterPoint.y);
+        gradient.setLocalMatrix(matrix);
+        mArcPaint.setShader(gradient);
+
+        Rect r = mMidRainbowDrawable.getBounds();
+        int rainbowOffSet = 8;
+        canvas.drawArc(new RectF(r.left + rainbowOffSet, r.top + rainbowOffSet, r.right - rainbowOffSet, r.bottom - rainbowOffSet)
+                , 90, 45 + 270 * (1.00f * mValue / 100), false, mArcPaint);
     }
 
     /**
@@ -435,15 +421,11 @@ public class CircleProgressView extends View {
      */
     private void drawText(Canvas canvas) {
         //百分比
-        //Rect mProgressRect = new Rect();
-        //mValuePaint.getTextBounds(String.valueOf(mValue), 0, String.valueOf(mValue).length(), mProgressRect);
         canvas.drawText(String.format(mPrecisionFormat, mValue), mCenterPoint.x, mValueOffset, mValuePaint);
-
         //提示
         if (mHint != null) {
             canvas.drawText(mHint.toString(), mCenterPoint.x, mHintOffset, mHintPaint);
         }
-
         //单位
         if (mUnit != null) {
             canvas.drawText(mUnit.toString(), mCenterPoint.x, mUnitOffset, mUnitPaint);
@@ -474,6 +456,26 @@ public class CircleProgressView extends View {
             float startY = mCenterPoint.x - (float) Math.cos(degrees) * mInsideDottedLineRadius;
             float stopX = mCenterPoint.x + (float) Math.sin(degrees) * mExternalDottedLineRadius;
             float stopY = mCenterPoint.x - (float) Math.cos(degrees) * mExternalDottedLineRadius;
+
+            if (mValue >= 0 && mValue < 50) {
+                if (degrees <= curPointerDegrees && degrees >= endDegrees) {
+                    mBgArcPaint.setColor(getResources().getColor(R.color.knob_arc_line_color_across));
+                } else {
+                    mBgArcPaint.setColor(getResources().getColor(R.color.knob_arc_line_color_un_across));
+                }
+            } else if (mValue > 50 && mValue <= 100) {
+                if (degrees <= curPointerDegrees || degrees >= endDegrees) {
+                    mBgArcPaint.setColor(getResources().getColor(R.color.knob_arc_line_color_across));
+                } else {
+                    mBgArcPaint.setColor(getResources().getColor(R.color.knob_arc_line_color_un_across));
+                }
+            } else if (mValue == 50) {
+                if (degrees < startDegrees) {
+                    mBgArcPaint.setColor(getResources().getColor(R.color.knob_arc_line_color_un_across));
+                } else {
+                    mBgArcPaint.setColor(getResources().getColor(R.color.knob_arc_line_color_across));
+                }
+            }
             canvas.drawLine(startX, startY, stopX, stopY, mBgArcPaint);
         }
     }
@@ -512,9 +514,9 @@ public class CircleProgressView extends View {
      * @param targetProgress
      */
     public void refreshView(int targetProgress) {
-
         if (targetProgress < 0 || targetProgress > 100) {
-            throw new IllegalArgumentException("progress index out of bounds exception");
+            LogUtil.e(TAG, "progress index out of bounds exception");
+            return;
         }
 
         curRotateDegrees = getCurRotateDegrees();
@@ -526,7 +528,6 @@ public class CircleProgressView extends View {
         LogUtil.e(TAG, "curDegrees:-------- " + curDegrees + " curAnimRotateDegrees:" + curAnimRotateDegrees);
 
         //startAnimator(curDegrees);
-
         //不使用动画，直接绘制
         curRotateDegrees = curDegrees + curAnimRotateDegrees;
         LogUtil.e(TAG, "curRotateDegrees:" + curRotateDegrees);
@@ -575,12 +576,10 @@ public class CircleProgressView extends View {
         if (mValue == 50) {
             degrees = 0;
         }
-
         // 0 ~ 2.3561945   50 ~ 100
         if (mValue > 50 && mValue <= 100) {
             degrees = (1 - (100 - mValue) / 50) * startDegrees;
         }
-
         // 3.9269907 ~ 6.236643   0 ~ 50
         if (mValue < 50 && mValue >= 0) {
             //degrees = (mValue - 50) / 50 * 270 / 2;
@@ -590,78 +589,8 @@ public class CircleProgressView extends View {
         return degrees;
     }
 
-    /**--------------------------- Get Set ------------------------------*/
-
-    /**
-     * 获取最大值
-     *
-     * @return
-     */
-    public float getMaxValue() {
-        return mMaxValue;
-    }
-
-    /**
-     * 设置最大值
-     *
-     * @param maxValue
-     */
-    public void setMaxValue(float maxValue) {
-        mMaxValue = maxValue;
-    }
-
-    /**
-     * 获取精度
-     *
-     * @return
-     */
-    public int getPrecision() {
-        return mPrecision;
-    }
-
-    public void setPrecision(int precision) {
-        mPrecision = precision;
-        mPrecisionFormat = getPrecisionFormat(precision);
-    }
-
-    public long getAnimTime() {
-        return mAnimTime;
-    }
-
-    public void setAnimTime(long animTime) {
-        mAnimTime = animTime;
-    }
-
-    public boolean isAntiAlias() {
-        return antiAlias;
-    }
-
-    public CharSequence getHint() {
-        return mHint;
-    }
-
-    public void setHint(CharSequence hint) {
-        mHint = hint;
-    }
-
-    public CharSequence getUnit() {
-        return mUnit;
-    }
-
-    public void setUnit(CharSequence unit) {
-        mUnit = unit;
-    }
-
     public float getValue() {
         return mValue;
-    }
-
-
-    /**
-     * 重置
-     */
-    public void reset() {
-        //startAnimator(mPercent, 0.0f, 1000L);
     }
 
     @Override
@@ -691,17 +620,6 @@ public class CircleProgressView extends View {
     }
 
     /**
-     * dip 转换成px
-     *
-     * @param dip
-     * @return
-     */
-    public static int dipToPx(Context context, float dip) {
-        float density = context.getResources().getDisplayMetrics().density;
-        return (int) (dip * density + 0.5f * (dip >= 0 ? 1 : -1));
-    }
-
-    /**
      * 获取数值精度格式化字符串
      *
      * @param precision
@@ -709,23 +627,5 @@ public class CircleProgressView extends View {
      */
     public static String getPrecisionFormat(int precision) {
         return "%." + precision + "f";
-    }
-
-    /**
-     * Drawable 资源加载
-     *
-     * @param context
-     * @param resId
-     * @return
-     */
-    public static Drawable getDrawable(Context context, int resId) {
-        if (resId <= 0) {
-            return null;
-        }
-        if (android.os.Build.VERSION.SDK_INT == 21) {
-            return context.getDrawable(resId);
-        } else {
-            return context.getResources().getDrawable(resId);
-        }
     }
 }

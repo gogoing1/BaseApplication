@@ -4,11 +4,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
+import com.example.chenq.UI.GradientColorTextView;
 import com.example.chenq.base.activity.BaseActivity;
 
 /**
@@ -25,19 +29,23 @@ public final class BroadcastActivity extends BaseActivity {
         context.startActivity(starter);
     }
 
+    GradientColorTextView mPrgressText;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_broadcast);
+        mPrgressText = findViewById(R.id.temperature_view);
+        refreshProgressView(66);
+    }
 
-//        BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                Log.d(TAG, "mBroadcastReceiver onReceived action :" + intent.getAction());
-//                intent.getAction();
-//
-//            }
-//        };
+    private void refreshProgressView(float value) {
+        SpannableString dateWeek = new SpannableString((int) value + "%");
+        dateWeek.setSpan(new AbsoluteSizeSpan(134, false), 0, dateWeek.length() - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        dateWeek.setSpan(new AbsoluteSizeSpan(52, false), dateWeek.length() - 1, dateWeek.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        if (mPrgressText != null) {
+            mPrgressText.setText(dateWeek);
+        }
     }
 
 }

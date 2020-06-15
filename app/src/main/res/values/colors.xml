@@ -9,4 +9,17 @@
     <color name="color_white_60">#99ffffff</color>
     <color name="color_white_30">#4Dffffff</color>
     <color name="color_white_20">#33ffffff</color>
+
+    <color name="knob_arc_line_color_un_across">#1FFF7445</color>
+    <color name="knob_arc_line_color_across">#57FF7445</color>
+
+    <color name="color_rainbow_1">#00000000</color>
+    <color name="color_rainbow_2">#1AFF4C82</color>
+    <color name="color_rainbow_3">#B3FF4C82</color>
+    <color name="color_rainbow_4">#FF4C79</color>
+    <color name="color_rainbow_5">#ff6766</color>
+    <color name="color_rainbow_6">#ff9053</color>
+    <color name="color_rainbow_7">#ff9e4a</color>
+    <color name="color_rainbow_8">#ffb938</color>
+    <color name="color_rainbow_9">#FFD425</color>
 </resources>
