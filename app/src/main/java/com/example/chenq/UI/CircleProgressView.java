@@ -50,6 +50,10 @@ public class CircleProgressView extends View {
     private float mImgLeftSet;
     private float mImgTopSet;
 
+    private TextPaint mSymbolPaint;
+    private float mSymbolSize = 54;
+    private final String mSymbolStr = "%";
+
     //百分比
     private TextPaint mValuePaint;
     private float mValue;
@@ -220,6 +224,12 @@ public class CircleProgressView extends View {
         // 设置Typeface对象，即字体风格，包括粗体，斜体以及衬线体，非衬线体等
         mValuePaint.setTypeface(Typeface.DEFAULT_BOLD);
         mValuePaint.setTextAlign(Paint.Align.CENTER);
+
+        mSymbolPaint = new TextPaint();
+        mSymbolPaint.setAntiAlias(true);
+        mSymbolPaint.setColor(mValueColor);
+        mSymbolPaint.setTextSize(mSymbolSize);
+        mSymbolPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
         mUnitPaint = new TextPaint();
         mUnitPaint.setAntiAlias(antiAlias);
@@ -406,7 +416,20 @@ public class CircleProgressView extends View {
      */
     private void drawText(Canvas canvas) {
         //百分比
-        canvas.drawText(String.format(mPrecisionFormat, mValue), mCenterPoint.x, mValueOffset, mValuePaint);
+        String mValueText = String.format(mPrecisionFormat, mValue);
+        Rect mValueTBRect = new Rect();
+        canvas.drawText(mValueText, mCenterPoint.x, mValueOffset, mValuePaint);
+        mValuePaint.getTextBounds(mValueText, 0, mValueText.length(), mValueTBRect);
+        float mValueTextWidth = mValueTBRect.right - mValueTBRect.left;
+
+        //测量%的Rect
+        //Rect mTBRect = new Rect();
+        //mSymbolPaint.getTextBounds(mSymbolStr, 0, 1, mTBRect);
+        //float mSymbolWidth = mTBRect.right - mTBRect.left;
+        Paint.FontMetrics fm = mSymbolPaint.getFontMetrics();
+        float mSBaseLine =  fm.bottom - fm.descent;
+        canvas.drawText(mSymbolStr, mCenterPoint.x + mValueTextWidth, mSBaseLine, mSymbolPaint);
+
         //单位
         if (mUnit != null) {
             canvas.drawText(mUnit.toString(), mCenterPoint.x, mUnitOffset, mUnitPaint);
