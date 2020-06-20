@@ -26,4 +26,9 @@
     <color name="color_rainbow_7">#ff9e4a</color>
     <color name="color_rainbow_8">#ffb938</color>
     <color name="color_rainbow_9">#FFD425</color>
+
+    <color name="color_dimming_vertical_seek_bg">#EBECF0</color>
+    <color name="color_dimming_seek_percent">#D7A468</color>
+    <color name="color_dimming_seek_offset_top">#FFE7BF</color>
+    <color name="color_dimming_seek_offset_bottom">#C58030</color>
 </resources>

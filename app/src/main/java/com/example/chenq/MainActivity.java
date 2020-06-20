@@ -8,6 +8,7 @@ import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.LyricActivity;
 import com.example.chenq.activity.TextViewActivity;
+import com.example.chenq.activity.VerticalSeekBarActivity;
 import com.example.chenq.base.activity.BaseActivity;
 
 /**
@@ -23,6 +24,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button mLyricBtn;
     private Button mBroadcastBtn;
     private Button mTextBtn;
+    private Button mVerticalSeekBarBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mBroadcastBtn.setOnClickListener(this);
         mTextBtn = findViewById(R.id.btn_text);
         mTextBtn.setOnClickListener(this);
+        mVerticalSeekBarBtn = findViewById(R.id.btn_vertical_seek_bar);
+        mVerticalSeekBarBtn.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +60,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_text:
                 TextViewActivity.start(this);
+                break;
+            case R.id.btn_vertical_seek_bar:
+                VerticalSeekBarActivity.start(this);
                 break;
             default:
                 break;
