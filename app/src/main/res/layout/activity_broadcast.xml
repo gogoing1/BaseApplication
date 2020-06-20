@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_white"
+    android:background="@mipmap/bg"
     tools:ignore="ResAuto">
 
     <com.example.chenq.UI.GradientColorTextView
@@ -16,9 +16,16 @@
         android:text="28%"
         android:textSize="150dp"
         app:direct="V"
+        android:visibility="gone"
         app:from="#FFFFD425"
         app:to="#FFFF4C82" />
 
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blur_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:realtimeBlurRadius="50dp" />
 
 
 </RelativeLayout>
