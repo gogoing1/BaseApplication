@@ -57,7 +57,7 @@ public class VerticalSeekBar extends View {
     private Drawable mSeekBarDrawable;
 
     // 是否开启动画
-    private boolean isOpenAnimate = true;
+    private boolean isOpenAnimate = false;
 
     public VerticalSeekBar(Context context) {
         this(context, null);
@@ -162,11 +162,12 @@ public class VerticalSeekBar extends View {
      * @param canvas
      */
     private void drawSeekBar(Canvas canvas) {
+        float progressOffsetY = getProgressOffSetY();
         mSeekBarDrawable.setBounds(
                 0,
-                (int) (getProgressOffSetY() - mSeekBarHeight / 2),
+                (int) (progressOffsetY - mSeekBarHeight / 2),
                 mSeekBarWidth,
-                (int) (getProgressOffSetY() + mSeekBarHeight / 2));
+                (int) (progressOffsetY + mSeekBarHeight / 2));
         mSeekBarDrawable.draw(canvas);
     }
 
@@ -219,7 +220,7 @@ public class VerticalSeekBar extends View {
      * @return true为合法
      */
     private boolean checkIllegalOfY() {
-        return !(touchY < mSeekBarHeight / 2 || touchY > getHeight() - seekBgHeight / 2);
+        return touchY > mSeekBarHeight / 2 && touchY < (getHeight() - mSeekBarHeight / 2);
     }
 
     /**
@@ -241,9 +242,9 @@ public class VerticalSeekBar extends View {
      * 动画，仅用于点击 - 抬起事件
      */
     private void startAnimator() {
-        final float transitOffsetY = seekBgHeight * (1 - 1.00f * getCurProgress() / 100);
+        final float transitOffsetY = seekBgHeight * 1.00f * getCurProgress() / 100;
         final ValueAnimator animator = ValueAnimator.ofInt(0, 100);
-        animator.setDuration(500);
+        animator.setDuration(600);
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -252,7 +253,6 @@ public class VerticalSeekBar extends View {
                 //点击任意区域，开始动画后Y值应该是由高到低的过程
                 float bottomY = mSeekBarHeight / 2 + seekBgHeight;
                 touchY = bottomY - transitOffsetY * percent;
-                LogUtil.e(TAG, "onAnimationUpdate " + percent + " touchY " + touchY);
                 if (checkIllegalOfY()) {
                     postInvalidate();
                 }
@@ -278,7 +278,9 @@ public class VerticalSeekBar extends View {
             case MotionEvent.ACTION_DOWN:
                 lastAction = action;
                 touchY = event.getY();
-                postInvalidate();
+                if(!isOpenAnimate){
+                    postInvalidate();
+                }
                 return true;
             case MotionEvent.ACTION_MOVE:
                 lastAction = action;
@@ -290,7 +292,7 @@ public class VerticalSeekBar extends View {
             case MotionEvent.ACTION_UP:
                 if (lastAction == MotionEvent.ACTION_MOVE || lastAction == MotionEvent.ACTION_DOWN) {
                     if (lastAction == MotionEvent.ACTION_DOWN && isOpenAnimate) {
-                        //startAnimator();
+                        startAnimator();
                     }
                     // 进度接口回调
                     if (mProgressBarListener != null) {
