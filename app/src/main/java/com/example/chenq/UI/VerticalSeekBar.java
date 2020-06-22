@@ -101,7 +101,7 @@ public class VerticalSeekBar extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mTextPaint.getTextBounds("100%", 0, 4, mTextRect);
-        int width = (int) (mSeekBarWidth + mTextOffSetX + mTextRect.width());
+        int width = (int) (mSeekBarWidth + mTextOffSetX + mTextRect.width() + 3);
         int height = mSeekBarHeight + seekBgHeight;
         setMeasuredDimension(width, height);
     }
