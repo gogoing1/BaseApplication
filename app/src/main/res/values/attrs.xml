@@ -37,4 +37,14 @@
         <attr name="to" format="color" />
         <attr name="direct" format="string" />
     </declare-styleable>
+
+
+    <declare-styleable name="VerticalSeekBar">
+        <attr name="seekBarWidth" format="dimension"></attr>
+        <attr name="seekBarHeight" format="dimension"></attr>
+        <attr name="seekBgWidth" format="dimension"></attr>
+        <attr name="seekBgHeight" format="dimension"></attr>
+
+    </declare-styleable>
+
 </resources>

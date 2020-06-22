@@ -3,6 +3,7 @@ package com.example.chenq.UI;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -16,14 +17,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
 import com.example.chenq.base.Interface.AnimatorListenerImpl;
 import com.example.chenq.base.util.DrawableUtil;
-import com.example.chenq.base.util.LogUtil;
 
 /**
  * create by chenqi on 2020/6/1
@@ -70,10 +69,10 @@ public class VerticalSeekBar extends View {
     public VerticalSeekBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        initView();
+        initView(attrs);
     }
 
-    private void initView() {
+    private void initView(AttributeSet attrs) {
         mBgPaint = new Paint();
         mBgPaint.setColor(getResources().getColor(R.color.color_white));
         mBgPaint.setAntiAlias(true);
@@ -88,12 +87,14 @@ public class VerticalSeekBar extends View {
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setColor(getResources().getColor(R.color.color_dimming_seek_percent));
         mTextRect = new Rect();
-        // TODO 待完成这里用 TypeArray 替换
         mSeekBarDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.bg_dimming_temp_seek_bar);
-        mSeekBarHeight = 52;
-        mSeekBarWidth = 52;
-        seekBgWidth = 32;
-        seekBgHeight = 590;
+
+        TypedArray a = mContext.obtainStyledAttributes(attrs, R.styleable.VerticalSeekBar);
+        mSeekBarWidth = (int) a.getDimension(R.styleable.VerticalSeekBar_seekBarWidth,52);
+        mSeekBarHeight = (int) a.getDimension(R.styleable.VerticalSeekBar_seekBarHeight,52);
+        seekBgWidth = (int) a.getDimension(R.styleable.VerticalSeekBar_seekBgWidth,32);
+        seekBgHeight = (int) a.getDimension(R.styleable.VerticalSeekBar_seekBgHeight,590);
+        a.recycle();
     }
 
     @Override
