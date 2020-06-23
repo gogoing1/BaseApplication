@@ -13,22 +13,19 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
-import com.example.chenq.base.util.LogUtil;
+import com.example.chenq.base.util.ColorUtils;
 
 /**
  * create by chenqi on 2020/6/22.
  * Email: chenqwork@gmail.com
- * Desc: 拖动球
- * 注意绘制过程中 X，Y坐标的合法性（）
+ * Desc: 圆盘-拖动球
+ * 注意绘制过程中 X，Y坐标的合法性（XY坐标需要在圆内）
  */
 public class DraggingBallView extends View {
 
     private static final String TAG = "DraggingBallView";
 
     private Context mContext;
-
-    //用图片画背景边缘会稍微有一点点糊
-    //private Drawable mBgDrawable;
 
     private final int mWidth = 570;
     private final int mHeight = 570;
@@ -37,11 +34,13 @@ public class DraggingBallView extends View {
 
     private final int mBallShadowOffsetX = -2;
     private final int mBallShadowOffsetY = 4;
+
     private Paint mBgPaint;
     private Paint mBallPaint;
     private Point mCenterPoint;
     private Point mTouchPoint;
     private Point mBallCenterPoint;
+    private int[] mColors;
 
     public DraggingBallView(Context context) {
         this(context, null);
@@ -58,8 +57,6 @@ public class DraggingBallView extends View {
 
     private void initView(Context context) {
         mContext = context;
-        //mBgDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.bg_dimming_rgb_color_temp);
-        //mBgDrawable.setBounds(0, 0, mBgWidth, mBgHeight);
         mBgPaint = new Paint();
         mBgPaint.setAntiAlias(true);
 
@@ -71,6 +68,8 @@ public class DraggingBallView extends View {
 
         //硬件加速会导致阴影不起作用，这里对其禁用，切勿在onDraw里面设置，那样会引起无限重绘
         setLayerType(LAYER_TYPE_SOFTWARE, null);
+        //颜色初始化
+        mColors = ColorUtils.getDimmingColor(mContext);
     }
 
     @Override
@@ -82,7 +81,6 @@ public class DraggingBallView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //mBgDrawable.draw(canvas)
         // 背景
         drawBg(canvas);
         // 小球
@@ -95,30 +93,45 @@ public class DraggingBallView extends View {
      * @param canvas
      */
     private void drawBall(Canvas canvas) {
-        mBallPaint.setColor(getResources().getColor(R.color.blue));
+        int color = getBallColor();
+        mBallPaint.setColor(getResources().getColor(color));
         mBallPaint.setShadowLayer(5, mBallShadowOffsetX, mBallShadowOffsetY, getResources().getColor(R.color.color_black_30));
         canvas.drawCircle(mBallCenterPoint.x, mBallCenterPoint.y, mBallWidth / 2, mBallPaint);
     }
 
+    private int lastColorIndex = 0;
 
     /**
-     * 获取点击的X坐标
+     * 圆球取色
+     * 以圆球到达顶端与底端时候中间两个圆球圆心的距离为总长度，将这段距离分为38等分，计算当前圆球圆心Y坐标在这个总长度上面的区间来取色
+     * distance = mHeight - mBallWidth
+     * perSpace = distance / 38
      *
      * @return
      */
-    private float getTouchX() {
-        LogUtil.e(TAG, "x:" + mTouchPoint.x);
-        return mTouchPoint.x;
+    private int getBallColor() {
+        int index = getBallColorIndex();
+        if (lastColorIndex != index) {
+            lastColorIndex = index;
+            if (mDragListener != null) {
+                mDragListener.onDragCallBack(lastColorIndex);
+            }
+        }
+
+        //LogUtil.e(TAG, "getBallColor -- " + index);
+        return mColors[index];
     }
 
-    /**
-     * 获取点击的Y坐标
-     *
-     * @return
-     */
-    private float getTouchY() {
-        LogUtil.e(TAG, "y:" + mTouchPoint.y);
-        return mTouchPoint.y;
+    public int getBallColorIndex() {
+        int index = 0;
+        float perSpace = 1.00f * (mHeight - mBallWidth) / mColors.length;
+        index = (int) ((mBallCenterPoint.y - mBallWidth / 2) / perSpace);
+        if (index < 0) {
+            index = 0;
+        } else if (index > mColors.length) {
+            index = mColors.length - 1;
+        }
+        return index;
     }
 
     /**
@@ -145,17 +158,10 @@ public class DraggingBallView extends View {
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-//                lastAction = action;
                 setPoint(event);
                 postInvalidate();
                 return true;
             case MotionEvent.ACTION_UP:
-//                if (lastAction == MotionEvent.ACTION_MOVE || lastAction == MotionEvent.ACTION_DOWN) {
-//                    if (mDragListener != null) {
-//                        Log.e(TAG, "x:" + mTouchPoint.x + " y:" + mCenterPoint.y);
-//                        mDragListener.onDragCallBack(mTouchPoint.x, mCenterPoint.y);
-//                    }
-//                }
                 return true;
             default:
                 break;
@@ -240,7 +246,7 @@ public class DraggingBallView extends View {
      * 进度监听事件
      */
     public interface DragListener {
-        void onDragCallBack(int x, int y);
+        void onDragCallBack(int progress);
     }
 
 }

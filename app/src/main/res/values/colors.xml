@@ -36,4 +36,44 @@
     <color name="color_dimming_offset_2">#FFF9FB</color>
     <color name="color_dimming_offset_3">#FFAE54</color>
 
+
+    <color name="color_dimming_list_1">#c8d8ff</color>
+    <color name="color_dimming_list_2">#cbdaff</color>
+    <color name="color_dimming_list_3">#cedcff</color>
+    <color name="color_dimming_list_4">#d1defe</color>
+    <color name="color_dimming_list_5">#d4dffe</color>
+    <color name="color_dimming_list_6">#d7e1fe</color>
+    <color name="color_dimming_list_7">#dae3fe</color>
+    <color name="color_dimming_list_8">#dde5fd</color>
+    <color name="color_dimming_list_9">#e0e7fd</color>
+    <color name="color_dimming_list_10">#e3e9fd</color>
+    <color name="color_dimming_list_11">#e7eafd</color>
+    <color name="color_dimming_list_12">#eaecfd</color>
+    <color name="color_dimming_list_13">#edeefc</color>
+    <color name="color_dimming_list_14">#f0f0fc</color>
+    <color name="color_dimming_list_15">#f3f2fc</color>
+    <color name="color_dimming_list_16">#f6f4fc</color>
+    <color name="color_dimming_list_17">#f9f5fb</color>
+    <color name="color_dimming_list_18">#fcf7fb</color>
+    <color name="color_dimming_list_19">#fff9fb</color>
+    <color name="color_dimming_list_20">#fff5f2</color>
+    <color name="color_dimming_list_21">#fff1e9</color>
+    <color name="color_dimming_list_22">#ffede1</color>
+    <color name="color_dimming_list_23">#ffe9d8</color>
+    <color name="color_dimming_list_24">#ffe5cf</color>
+    <color name="color_dimming_list_25">#ffe1c6</color>
+    <color name="color_dimming_list_26">#ffddbd</color>
+    <color name="color_dimming_list_27">#ffd9b5</color>
+    <color name="color_dimming_list_28">#ffd5ac</color>
+    <color name="color_dimming_list_29">#ffd2a3</color>
+    <color name="color_dimming_list_30">#ffce9a</color>
+    <color name="color_dimming_list_31">#ffca92</color>
+    <color name="color_dimming_list_32">#ffc689</color>
+    <color name="color_dimming_list_33">#ffc280</color>
+    <color name="color_dimming_list_34">#ffbe77</color>
+    <color name="color_dimming_list_35">#ffba6e</color>
+    <color name="color_dimming_list_36">#ffb666</color>
+    <color name="color_dimming_list_37">#ffb25d</color>
+    <color name="color_dimming_list_38">#ffae54</color>
+
 </resources>

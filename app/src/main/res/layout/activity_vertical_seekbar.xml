@@ -5,6 +5,7 @@
     android:background="@color/color_black">
 
     <com.example.chenq.UI.DraggingBallView
+        android:id="@+id/dbv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
