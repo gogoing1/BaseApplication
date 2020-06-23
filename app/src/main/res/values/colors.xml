@@ -31,4 +31,9 @@
     <color name="color_dimming_seek_percent">#D7A468</color>
     <color name="color_dimming_seek_offset_top">#FFE7BF</color>
     <color name="color_dimming_seek_offset_bottom">#C58030</color>
+
+    <color name="color_dimming_offset_1">#C8D8FF</color>
+    <color name="color_dimming_offset_2">#FFF9FB</color>
+    <color name="color_dimming_offset_3">#FFAE54</color>
+
 </resources>

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
+import com.example.chenq.activity.DraggingBallActivity;
 import com.example.chenq.activity.LyricActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button mBroadcastBtn;
     private Button mTextBtn;
     private Button mVerticalSeekBarBtn;
+    private Button mDraggingBallBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTextBtn.setOnClickListener(this);
         mVerticalSeekBarBtn = findViewById(R.id.btn_vertical_seek_bar);
         mVerticalSeekBarBtn.setOnClickListener(this);
+        mDraggingBallBtn = findViewById(R.id.btn_dragging_ball);
+        mDraggingBallBtn.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +67,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.btn_vertical_seek_bar:
                 VerticalSeekBarActivity.start(this);
+                break;
+            case R.id.btn_dragging_ball:
+                DraggingBallActivity.start(this);
                 break;
             default:
                 break;

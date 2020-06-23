@@ -23,6 +23,10 @@
         </activity>
 
         <activity
+            android:name="com.example.chenq.activity.DraggingBallActivity"
+            android:theme="@style/SlidableTheme" />
+
+        <activity
             android:name="com.example.chenq.activity.VerticalSeekBarActivity"
             android:theme="@style/SlidableTheme" />
 
