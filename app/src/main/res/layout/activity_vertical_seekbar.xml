@@ -4,10 +4,33 @@
     android:layout_height="match_parent"
     android:background="@color/color_black">
 
-    <com.example.chenq.UI.DraggingBallView
-        android:id="@+id/dbv"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:orientation="horizontal">
+
+        <com.example.chenq.UI.DraggingBallView
+            android:id="@+id/dbv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.example.chenq.UI.DraggingBallRGBView
+            android:id="@+id/dbv_rgb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/dbv" />
+    </LinearLayout>
+
+
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="400dp"
+        android:layout_height="60px"
+        android:background="@color/color_white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
 
 </RelativeLayout>

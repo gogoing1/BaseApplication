@@ -27,19 +27,18 @@ public class DraggingBallView extends View {
 
     private Context mContext;
 
-    private final int mWidth = 570;
-    private final int mHeight = 570;
+    public final int mWidth = 570;
+    public final int mHeight = 570;
     private final int mBallWidth = 90;
-    private int lastAction = -999;
 
     private final int mBallShadowOffsetX = -2;
     private final int mBallShadowOffsetY = 4;
 
-    private Paint mBgPaint;
+    public Paint mBgPaint;
     private Paint mBallPaint;
-    private Point mCenterPoint;
+    public Point mCenterPoint;
+    public Point mBallCenterPoint;
     private Point mTouchPoint;
-    private Point mBallCenterPoint;
     private int[] mColors;
 
     public DraggingBallView(Context context) {
@@ -109,7 +108,7 @@ public class DraggingBallView extends View {
      *
      * @return
      */
-    private int getBallColor() {
+    public int getBallColor() {
         int index = getBallColorIndex();
         if (lastColorIndex != index) {
             lastColorIndex = index;
@@ -128,7 +127,7 @@ public class DraggingBallView extends View {
         index = (int) ((mBallCenterPoint.y - mBallWidth / 2) / perSpace);
         if (index < 0) {
             index = 0;
-        } else if (index > mColors.length) {
+        } else if (index >= mColors.length) {
             index = mColors.length - 1;
         }
         return index;
@@ -139,7 +138,7 @@ public class DraggingBallView extends View {
      *
      * @param canvas
      */
-    private void drawBg(Canvas canvas) {
+    public void drawBg(Canvas canvas) {
         LinearGradient mGradient = new LinearGradient(
                 mCenterPoint.x, 0,
                 mCenterPoint.x, mHeight,
@@ -149,6 +148,17 @@ public class DraggingBallView extends View {
                 null, Shader.TileMode.MIRROR);
         mBgPaint.setShader(mGradient);
         canvas.drawCircle(mCenterPoint.x, mCenterPoint.y, mWidth / 2, mBgPaint);
+    }
+
+    /**
+     * 设置进度
+     *
+     * @param progress
+     */
+    public void setProgress(int progress) {
+        int y = (int) (mBallWidth / 2 + (mHeight - mBallWidth) * (1 - 1.00 * progress / 100));
+        mBallCenterPoint.set(mCenterPoint.x, y);
+        postInvalidate();
     }
 
 
