@@ -20,9 +20,9 @@ import com.example.chenq.R;
 /**
  * create by chenqi on 2020/6/1
  * Email: chenqwork@gmail.com
- * Desc: 音乐卡片-自定义播放进度条
+ * Desc:
  */
-public class MusicProgressBar extends View {
+public class HorizontalProgressBar extends View {
 
     private static final String TAG = "MusicProgressBar";
 
@@ -41,15 +41,15 @@ public class MusicProgressBar extends View {
     private int lastAction = -999;
     private Bitmap mProgressBarBitmap;
 
-    public MusicProgressBar(Context context) {
+    public HorizontalProgressBar(Context context) {
         this(context, null);
     }
 
-    public MusicProgressBar(Context context, @Nullable AttributeSet attrs) {
+    public HorizontalProgressBar(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MusicProgressBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public HorizontalProgressBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }
