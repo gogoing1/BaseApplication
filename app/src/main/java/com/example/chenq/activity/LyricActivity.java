@@ -8,10 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.R;
-import com.example.chenq.base.activity.BaseActivity;
-import com.example.chenq.base.util.FileUtils;
-import com.example.chenq.base.util.LyricUtil;
+import com.example.chenq.util.FileUtils;
+import com.example.chenq.util.LyricUtil;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.example.chenq.base.Interface;
+package com.example.chenq.interfaces;
 
 import android.animation.Animator;
 

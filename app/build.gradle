@@ -32,5 +32,8 @@ dependencies {
     // 毛玻璃
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 
-//    implementation ("com.serenegiant:common:2.12.4")
+    // implementation ("com.serenegiant:common:2.12.4")
+
+    // 依赖
+    implementation project(path: ':base')
 }

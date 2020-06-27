@@ -1,4 +1,4 @@
-package com.example.chenq.UI;
+package com.example.chenq.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
-import com.example.chenq.base.util.ColorUtils;
+import com.example.chenq.util.ColorUtils;
 
 /**
  * create by chenqi on 2020/6/22.

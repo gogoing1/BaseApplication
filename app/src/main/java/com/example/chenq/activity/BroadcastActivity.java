@@ -1,19 +1,17 @@
 package com.example.chenq.activity;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.R;
-import com.example.chenq.UI.GradientColorTextView;
-import com.example.chenq.base.activity.BaseActivity;
+import com.example.chenq.widget.GradientColorTextView;
 
 /**
  * create by chenqi on 2020/6/9

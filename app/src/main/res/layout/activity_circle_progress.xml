@@ -15,7 +15,7 @@
         app:realtimeBlurRadius="20dp"
         app:realtimeOverlayColor="#B3DEE9FF" />
 
-    <com.example.chenq.UI.CircleProgressView
+    <com.example.chenq.widget.CircleProgressView
         android:id="@+id/circle_progress"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

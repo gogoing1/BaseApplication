@@ -10,12 +10,12 @@
         android:layout_centerInParent="true"
         android:orientation="horizontal">
 
-        <com.example.chenq.UI.DraggingBallView
+        <com.example.chenq.widget.DraggingBallView
             android:id="@+id/dbv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.example.chenq.UI.DraggingBallRGBView
+        <com.example.chenq.widget.DraggingBallRGBView
             android:id="@+id/dbv_rgb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

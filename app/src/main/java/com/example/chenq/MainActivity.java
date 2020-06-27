@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.DraggingBallActivity;
 import com.example.chenq.activity.LyricActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
-import com.example.chenq.base.activity.BaseActivity;
 
 /**
  * create by chenqi on 2020/6/11

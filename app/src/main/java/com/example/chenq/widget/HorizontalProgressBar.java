@@ -1,4 +1,4 @@
-package com.example.chenq.UI;
+package com.example.chenq.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;

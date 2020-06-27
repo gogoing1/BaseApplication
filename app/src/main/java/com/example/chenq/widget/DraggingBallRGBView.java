@@ -1,4 +1,4 @@
-package com.example.chenq.UI;
+package com.example.chenq.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,9 +9,9 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
-import com.example.chenq.base.util.ColorUtils;
-import com.example.chenq.base.util.DrawableUtil;
-import com.example.chenq.base.util.LogUtil;
+import com.example.chenq.util.ColorUtils;
+import com.example.chenq.util.DrawableUtil;
+import com.example.chenq.util.LogUtil;
 
 /**
  * create by chenqi on 2020/6/22.

@@ -1,4 +1,4 @@
-package com.example.chenq.UI;
+package com.example.chenq.widget;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -23,9 +23,9 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
 import com.example.chenq.R;
-import com.example.chenq.base.Interface.AnimatorListenerImpl;
-import com.example.chenq.base.util.DrawableUtil;
-import com.example.chenq.base.util.LogUtil;
+import com.example.chenq.interfaces.AnimatorListenerImpl;
+import com.example.chenq.util.DrawableUtil;
+import com.example.chenq.util.LogUtil;
 
 
 /**

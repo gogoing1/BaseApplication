@@ -1,11 +1,11 @@
-package com.example.chenq.base.activity;
+package com.chenq.base.activity;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.chenq.R;
+import com.chenq.base.R;
 
 /**
  * create by chenqi on 2020/6/11

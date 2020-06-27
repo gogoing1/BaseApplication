@@ -7,7 +7,7 @@
     android:background="@mipmap/bg"
     tools:ignore="ResAuto">
 
-    <com.example.chenq.UI.GradientColorTextView
+    <com.example.chenq.widget.GradientColorTextView
         android:id="@+id/temperature_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

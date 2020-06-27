@@ -9,8 +9,8 @@ import android.widget.SeekBar;
 import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.example.chenq.R;
-import com.example.chenq.UI.CircleProgressView;
-import com.example.chenq.base.activity.BaseActivity;
+import com.example.chenq.widget.CircleProgressView;
+import com.chenq.base.activity.BaseActivity;
 
 /**
  * create by chenqi on 2020/6/11

@@ -8,10 +8,10 @@ import android.widget.SeekBar;
 
 import androidx.annotation.RequiresApi;
 
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.R;
-import com.example.chenq.UI.DraggingBallRGBView;
-import com.example.chenq.UI.DraggingBallView;
-import com.example.chenq.base.activity.BaseActivity;
+import com.example.chenq.widget.DraggingBallRGBView;
+import com.example.chenq.widget.DraggingBallView;
 
 /**
  * create by chenqi on 2020/6/11
