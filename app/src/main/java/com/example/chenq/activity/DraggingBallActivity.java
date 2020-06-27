@@ -16,7 +16,7 @@ import com.example.chenq.widget.DraggingBallView;
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
- * Desc: 拖动球
+ * Desc: 圆盘拖动球
  */
 public class DraggingBallActivity extends BaseActivity {
 

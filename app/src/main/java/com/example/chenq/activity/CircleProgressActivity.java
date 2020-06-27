@@ -15,7 +15,7 @@ import com.chenq.base.activity.BaseActivity;
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
- * Desc: 旋钮
+ * Desc: 圆弧进度条
  */
 public class CircleProgressActivity extends BaseActivity {
 

@@ -20,7 +20,7 @@ import me.zhengken.lyricview.LyricView;
 /**
  * create by chenqi on 2020/6/9
  * Email: chenqwork@gmail.com
- * Desc: 歌词实践类
+ * Desc: 歌词实践
  */
 public final class LyricActivity extends BaseActivity {
 

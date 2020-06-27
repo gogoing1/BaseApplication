@@ -12,7 +12,7 @@ import com.example.chenq.R;
 /**
  * create by chenqi on 2020/6/9
  * Email: chenqwork@gmail.com
- * Desc: android TextView 测试类
+ * Desc:
  */
 public final class TextViewActivity extends BaseActivity {
 

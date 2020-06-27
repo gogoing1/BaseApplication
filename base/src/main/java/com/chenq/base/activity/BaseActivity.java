@@ -10,7 +10,7 @@ import com.chenq.base.R;
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
- * Desc: 旋钮
+ * Desc:
  */
 public class BaseActivity extends AppCompatActivity {
 
