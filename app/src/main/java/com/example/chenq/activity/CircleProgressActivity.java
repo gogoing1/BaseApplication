@@ -10,14 +10,14 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.example.chenq.R;
 import com.example.chenq.widget.CircleProgressView;
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.activity.AbstractActivity;
 
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
  * Desc: 圆弧进度条
  */
-public class CircleProgressActivity extends BaseActivity {
+public class CircleProgressActivity extends AbstractActivity {
 
     private static final String TAG = "CircleProgressActivity";
 

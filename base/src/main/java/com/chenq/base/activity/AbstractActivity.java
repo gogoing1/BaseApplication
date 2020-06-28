@@ -10,9 +10,9 @@ import com.chenq.base.R;
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
- * Desc:
+ * Desc: Activity抽象父类，做一些统一的全局操作
  */
-public class BaseActivity extends AppCompatActivity {
+public class AbstractActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.activity.AbstractActivity;
 import com.example.chenq.R;
 
 /**
@@ -12,7 +12,7 @@ import com.example.chenq.R;
  * Email: chenqwork@gmail.com
  * Desc: 垂直进度条
  */
-public class VerticalSeekBarActivity extends BaseActivity {
+public class VerticalSeekBarActivity extends AbstractActivity {
 
     private static final String TAG = "CircleProgressActivity";
 

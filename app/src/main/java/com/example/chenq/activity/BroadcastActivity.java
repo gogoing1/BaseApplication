@@ -9,7 +9,7 @@ import android.text.style.AbsoluteSizeSpan;
 
 import androidx.annotation.Nullable;
 
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.activity.AbstractActivity;
 import com.example.chenq.R;
 import com.example.chenq.widget.GradientColorTextView;
 
@@ -18,7 +18,7 @@ import com.example.chenq.widget.GradientColorTextView;
  * Email: chenqwork@gmail.com
  * Desc: 广播测试类
  */
-public final class BroadcastActivity extends BaseActivity {
+public final class BroadcastActivity extends AbstractActivity {
 
     private static final String TAG = "BroadcastActivity";
 
