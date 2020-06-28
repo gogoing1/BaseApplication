@@ -8,7 +8,7 @@ import android.widget.SeekBar;
 
 import androidx.annotation.RequiresApi;
 
-import com.chenq.base.activity.AbstractActivity;
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.R;
 import com.example.chenq.widget.DraggingBallRGBView;
 import com.example.chenq.widget.DraggingBallView;
@@ -18,7 +18,7 @@ import com.example.chenq.widget.DraggingBallView;
  * Email: chenqwork@gmail.com
  * Desc: 圆盘拖动球
  */
-public class DraggingBallActivity extends AbstractActivity {
+public class DraggingBallActivity extends BaseActivity {
 
     private static final String TAG = "DraggingBallActivity";
 

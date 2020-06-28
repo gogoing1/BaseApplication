@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.chenq.base.activity.AbstractActivity;
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.R;
 
 /**
@@ -14,7 +14,7 @@ import com.example.chenq.R;
  * Email: chenqwork@gmail.com
  * Desc:
  */
-public final class TextViewActivity extends AbstractActivity {
+public final class TextViewActivity extends BaseActivity {
 
     private static final String TAG = "TextViewActivity";
 

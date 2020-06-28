@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.chenq.base.activity.AbstractActivity;
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.DraggingBallActivity;
@@ -17,7 +17,7 @@ import com.example.chenq.activity.VerticalSeekBarActivity;
  * Email: chenqwork@gmail.com
  * Desc:
  */
-public class MainActivity extends AbstractActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
 

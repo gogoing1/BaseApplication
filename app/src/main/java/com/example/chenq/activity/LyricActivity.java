@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.chenq.base.activity.AbstractActivity;
+import com.chenq.base.activity.BaseActivity;
 import com.example.chenq.R;
 import com.example.chenq.util.FileUtils;
 import com.example.chenq.util.LyricUtil;
@@ -22,7 +22,7 @@ import me.zhengken.lyricview.LyricView;
  * Email: chenqwork@gmail.com
  * Desc: 歌词实践
  */
-public final class LyricActivity extends AbstractActivity {
+public final class LyricActivity extends BaseActivity {
 
     private static final String TAG = "LyricActivity";
     private TextView curLyricPlayText;
