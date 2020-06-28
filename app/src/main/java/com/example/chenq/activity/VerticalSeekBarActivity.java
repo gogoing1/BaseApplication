@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.BaseActivity;
 import com.example.chenq.R;
 
 /**

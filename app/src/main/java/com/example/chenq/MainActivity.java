@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.BaseActivity;
 import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.DraggingBallActivity;

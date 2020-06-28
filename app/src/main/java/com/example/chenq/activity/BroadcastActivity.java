@@ -9,7 +9,7 @@ import android.text.style.AbsoluteSizeSpan;
 
 import androidx.annotation.Nullable;
 
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.BaseActivity;
 import com.example.chenq.R;
 import com.example.chenq.widget.GradientColorTextView;
 

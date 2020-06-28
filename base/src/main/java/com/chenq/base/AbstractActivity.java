@@ -1,4 +1,4 @@
-package com.chenq.base.activity;
+package com.chenq.base;
 
 import android.os.Bundle;
 
@@ -10,13 +10,14 @@ import com.chenq.base.R;
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
- * Desc:
+ * Desc: Activity抽象父类，做一些统一的全局操作
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class AbstractActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityStack.getInstance().addActivity(this);
     }
 
     @Override
@@ -24,4 +25,5 @@ public class BaseActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.push_in_from_right, R.anim.alpha_out);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.chenq.base.activity;
+package com.chenq.base;
 
 import android.os.Bundle;
 
@@ -10,9 +10,9 @@ import com.chenq.base.R;
 /**
  * create by chenqi on 2020/6/11
  * Email: chenqwork@gmail.com
- * Desc: Activity抽象父类，做一些统一的全局操作
+ * Desc:
  */
-public class AbstractActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

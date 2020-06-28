@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.chenq.base.activity.BaseActivity;
+import com.chenq.base.BaseActivity;
 import com.example.chenq.R;
 import com.example.chenq.util.FileUtils;
 import com.example.chenq.util.LyricUtil;
