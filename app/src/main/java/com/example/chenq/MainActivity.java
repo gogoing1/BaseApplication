@@ -9,6 +9,7 @@ import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.DraggingBallActivity;
 import com.example.chenq.activity.LyricActivity;
+import com.example.chenq.activity.SwipeBackActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
     private Button mTextBtn;
     private Button mVerticalSeekBarBtn;
     private Button mDraggingBallBtn;
+    private Button mSwipeBtn;
 
     @Override
     protected int setContentView() {
@@ -51,6 +53,8 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
         mVerticalSeekBarBtn.setOnClickListener(this);
         mDraggingBallBtn = findViewById(R.id.btn_dragging_ball);
         mDraggingBallBtn.setOnClickListener(this);
+        mSwipeBtn = findViewById(R.id.btn_swipe_act);
+        mSwipeBtn.setOnClickListener(this);
     }
 
     @Override
@@ -74,8 +78,17 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
             case R.id.btn_dragging_ball:
                 DraggingBallActivity.start(this);
                 break;
+            case R.id.btn_swipe_act:
+                SwipeBackActivity.start(this);
+                break;
             default:
                 break;
         }
+    }
+
+
+    @Override
+    public boolean setSwipeBack() {
+        return false;
     }
 }

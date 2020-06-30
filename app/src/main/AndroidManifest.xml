@@ -45,6 +45,10 @@
         <activity
             android:name=".activity.TextViewActivity"
             android:theme="@style/SlidableTheme" />
+
+        <activity
+            android:name=".activity.SwipeBackActivity"
+            android:theme="@style/SlidableTheme" />
     </application>
 
 </manifest>

@@ -53,26 +53,39 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     protected abstract void bindViews(Bundle savedInstanceState);
 
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (!swipeBackEnable) return true;
-        if (isGoingSwipeBack) {
-            if (ev.getAction() == MotionEvent.ACTION_UP) isGoingSwipeBack = false;
-            return true;
-        }
-        float touchX = ev.getX();
-        switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if (touchX <= startTouchOffset) {
-                    mStartTouchX = touchX;
-                }
+        if (swipeBackEnable) {
+            if (isGoingSwipeBack) {
+                if (ev.getAction() == MotionEvent.ACTION_UP) isGoingSwipeBack = false;
                 return true;
-            case MotionEvent.ACTION_MOVE:
-                if (touchX - mStartTouchX >= workedTouchDistance) {
-                    isGoingSwipeBack = true;
-                    finish();
-                }
-                return true;
+            }
+            float touchX = ev.getX();
+            switch (ev.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    if (touchX <= startTouchOffset) {
+                        mStartTouchX = touchX;
+                    }
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    if (mStartTouchX > 0) {
+                        if (touchX - mStartTouchX >= workedTouchDistance) {
+                            isGoingSwipeBack = true;
+                            finish();
+                            mStartTouchX = 0;
+                            return true;
+                        }
+                    } else if (touchX < startTouchOffset) {
+                        mStartTouchX = touchX;
+                        return true;
+                    }
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                case MotionEvent.ACTION_UP:
+                    mStartTouchX = 0;
+                    break;
+            }
         }
         return super.dispatchTouchEvent(ev);
     }
