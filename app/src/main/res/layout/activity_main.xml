@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_default_btn_style"
                 android:text="SwipeAct"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_dragging_ball"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_default_btn_style"
                 android:text="vertical seek bar"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <Button
                 android:id="@+id/btn_vertical_seek_bar"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_default_btn_style"
                 android:text="progress bar"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_lyric"

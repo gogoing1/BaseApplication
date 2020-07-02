@@ -5,15 +5,19 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
-import com.example.chenq.util.ColorUtils;
+import com.example.chenq.util.DimmingLampConfig;
+import com.example.chenq.util.DrawableUtil;
+import com.example.chenq.util.LogUtil;
+
 
 /**
  * create by chenqi on 2020/6/22.
@@ -21,7 +25,7 @@ import com.example.chenq.util.ColorUtils;
  * Desc: 圆盘-拖动球
  * 注意绘制过程中 X，Y坐标的合法性（XY坐标需要在圆内）
  */
-public class DraggingBallView extends View {
+public class DraggingBallView extends TouchCallbackView {
 
     private static final String TAG = "DraggingBallView";
 
@@ -30,16 +34,20 @@ public class DraggingBallView extends View {
     public final int mWidth = 570;
     public final int mHeight = 570;
     private final int mBallWidth = 90;
-
     private final int mBallShadowOffsetX = -2;
     private final int mBallShadowOffsetY = 4;
-
+    public int lastColorIndex = 0;
+    private Rect mCoverRect;
     public Paint mBgPaint;
-    private Paint mBallPaint;
     public Point mCenterPoint;
     public Point mBallCenterPoint;
     private Point mTouchPoint;
+    private Paint mBallPaint;
     private int[] mColors;
+    //private Drawable mCoverDrawable;
+
+    // 是否可操作
+    private boolean isOperable = true;
 
     public DraggingBallView(Context context) {
         this(context, null);
@@ -58,17 +66,18 @@ public class DraggingBallView extends View {
         mContext = context;
         mBgPaint = new Paint();
         mBgPaint.setAntiAlias(true);
-
         mBallPaint = new Paint();
         mBallPaint.setAntiAlias(true);
         mCenterPoint = new Point(mWidth / 2, mHeight / 2);
         mTouchPoint = new Point(mCenterPoint);
         mBallCenterPoint = new Point(mCenterPoint);
-
+        LogUtil.e(TAG, "mBallCenterPoint init" + mBallCenterPoint.x + " " + mBallCenterPoint.y);
+        mCoverRect = new Rect(0, 0, mWidth, mHeight);
+        //mCoverDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.bg_circle_grey_cover);
         //硬件加速会导致阴影不起作用，这里对其禁用，切勿在onDraw里面设置，那样会引起无限重绘
         setLayerType(LAYER_TYPE_SOFTWARE, null);
         //颜色初始化
-        mColors = ColorUtils.getDimmingColor(mContext);
+        mColors = DimmingLampConfig.getDimmingColor(mContext);
     }
 
     @Override
@@ -84,53 +93,10 @@ public class DraggingBallView extends View {
         drawBg(canvas);
         // 小球
         drawBall(canvas);
-    }
-
-    /**
-     * 绘制拖动圆球
-     *
-     * @param canvas
-     */
-    private void drawBall(Canvas canvas) {
-        int color = getBallColor();
-        mBallPaint.setColor(getResources().getColor(color));
-        mBallPaint.setShadowLayer(5, mBallShadowOffsetX, mBallShadowOffsetY, getResources().getColor(R.color.color_black_30));
-        canvas.drawCircle(mBallCenterPoint.x, mBallCenterPoint.y, mBallWidth / 2, mBallPaint);
-    }
-
-    private int lastColorIndex = 0;
-
-    /**
-     * 圆球取色
-     * 以圆球到达顶端与底端时候中间两个圆球圆心的距离为总长度，将这段距离分为38等分，计算当前圆球圆心Y坐标在这个总长度上面的区间来取色
-     * distance = mHeight - mBallWidth
-     * perSpace = distance / 38
-     *
-     * @return
-     */
-    public int getBallColor() {
-        int index = getBallColorIndex();
-        if (lastColorIndex != index) {
-            lastColorIndex = index;
-            if (mDragListener != null) {
-                mDragListener.onDragCallBack(lastColorIndex);
-            }
+        // 绘制覆盖层
+        if (!isOperable) {
+            drawCoverBg(canvas);
         }
-
-        //LogUtil.e(TAG, "getBallColor -- " + index);
-        return mColors[index];
-    }
-
-    public int getBallColorIndex() {
-        int index = 0;
-        float perSpace = 1.00f * (mHeight - mBallWidth) / mColors.length;
-        index = (int) ((mBallCenterPoint.y - mBallWidth / 2) / perSpace);
-        if (index < 0) {
-            index = 0;
-        } else if (index >= mColors.length) {
-            index = mColors.length - 1;
-        }
-        return index;
     }
 
     /**
@@ -150,6 +116,57 @@ public class DraggingBallView extends View {
         canvas.drawCircle(mCenterPoint.x, mCenterPoint.y, mWidth / 2, mBgPaint);
     }
 
+
+    /**
+     * 绘制拖动圆球
+     *
+     * @param canvas
+     */
+    private void drawBall(Canvas canvas) {
+        int color = getBallColor();
+        if (color == 0) return;
+        mBallPaint.setColor(color);
+        mBallPaint.setShadowLayer(5, mBallShadowOffsetX, mBallShadowOffsetY, getResources().getColor(R.color.color_black_30));
+        canvas.drawCircle(mBallCenterPoint.x, mBallCenterPoint.y, mBallWidth / 2, mBallPaint);
+    }
+
+    /**
+     * 绘制覆盖层
+     *
+     * @param canvas
+     */
+    private void drawCoverBg(Canvas canvas) {
+        //mCoverDrawable.setBounds(mCoverRect);
+        //mCoverDrawable.draw(canvas);
+    }
+
+    private int curColorIndex;
+
+    /**
+     * 圆球取色
+     * 以圆球到达顶端与底端时候中间两个圆球圆心的距离为总长度，将这段距离分为38等分，计算当前圆球圆心Y坐标在这个总长度上面的区间来取色
+     * distance = mHeight - mBallWidth
+     * perSpace = distance / 38
+     *
+     * @return
+     */
+    public int getBallColor() {
+        curColorIndex = getBallColorIndex();
+        return getResources().getColor(mColors[curColorIndex]);
+    }
+
+    public int getBallColorIndex() {
+        int index = 0;
+        float perSpace = 1.00f * (mHeight - mBallWidth) / mColors.length;
+        index = (int) ((mBallCenterPoint.y - mBallWidth / 2) / perSpace);
+        if (index < 0) {
+            index = 0;
+        } else if (index >= mColors.length) {
+            index = mColors.length - 1;
+        }
+        return index;
+    }
+
     /**
      * 设置进度
      *
@@ -158,25 +175,40 @@ public class DraggingBallView extends View {
     public void setProgress(int progress) {
         int y = (int) (mBallWidth / 2 + (mHeight - mBallWidth) * (1 - 1.00 * progress / 100));
         mBallCenterPoint.set(mCenterPoint.x, y);
+        LogUtil.e(TAG, "setProgress ball_x" + mCenterPoint.x + "   ball_y" + y + " progress:" + progress);
         postInvalidate();
     }
 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!isOperable) return super.onTouchEvent(event);
         int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 setPoint(event);
                 postInvalidate();
+                onProgressCallBack();
+                onTouchCallBack(event);
                 return true;
             case MotionEvent.ACTION_UP:
+                onProgressCallBack();
+                onTouchCallBack(event);
                 return true;
             default:
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    public void onProgressCallBack() {
+        if (lastColorIndex != curColorIndex) {
+            lastColorIndex = curColorIndex;
+            if (mDragListener != null) {
+                mDragListener.onDragCallBack(mColors.length - lastColorIndex);
+            }
+        }
     }
 
 
@@ -243,12 +275,14 @@ public class DraggingBallView extends View {
         }
     }
 
+
+
     /**
      * 进度监听事件
      */
-    private DragListener mDragListener;
+    public DragListener mDragListener;
 
-    public void setProgressBarListener(DragListener listener) {
+    public void setDragListener(DragListener listener) {
         this.mDragListener = listener;
     }
 
@@ -259,4 +293,15 @@ public class DraggingBallView extends View {
         void onDragCallBack(int progress);
     }
 
+    /**
+     * 设置是否可操作
+     *
+     * @param operable
+     */
+    public void setOperable(boolean operable) {
+        if (operable != isOperable) {
+            isOperable = operable;
+            postInvalidate();
+        }
+    }
 }

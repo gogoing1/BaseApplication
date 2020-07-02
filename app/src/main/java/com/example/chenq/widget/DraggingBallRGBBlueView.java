@@ -1,9 +1,15 @@
 package com.example.chenq.widget;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -11,32 +17,50 @@ import android.util.AttributeSet;
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
+import com.example.chenq.util.BlurBitmapUtil;
 import com.example.chenq.util.DimmingLampConfig;
 import com.example.chenq.util.DrawableUtil;
 
 /**
  * create by chenqi on 2020/6/22.
  * Email: chenqwork@gmail.com
- * Desc: 色盘选择器
+ * Desc: 色盘选择器-模糊效果
  */
-public class DraggingBallRGBView extends DraggingBallView {
+public class DraggingBallRGBBlueView extends DraggingBallView {
 
-    private static final String TAG = "DraggingBallRGBView";
+    private static final String TAG = "DraggingBallRGBBlueView";
 
     private Drawable mBgDrawable;
+    private Bitmap mBlueBitmap;
+    private Paint mBluePaint;
+    private float perDegrees;
+    private float allDegrees = (float) (2.0f * Math.PI);
+    private RectF mRectF = new RectF(0, 0, 570, 570);
+    private int mDottedLineCount = 180;
 
-    public DraggingBallRGBView(Context context) {
+
+    public DraggingBallRGBBlueView(Context context) {
         this(context, null);
     }
 
-    public DraggingBallRGBView(Context context, @Nullable AttributeSet attrs) {
+    public DraggingBallRGBBlueView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public DraggingBallRGBView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DraggingBallRGBBlueView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mBgDrawable = DrawableUtil.getDrawable(getContext(), R.mipmap.bg_rgb);
         mBgDrawable.setBounds(new Rect(0, 0, mWidth, mHeight));
+
+        mBluePaint = new Paint();
+        mBluePaint.setAntiAlias(true);
+        mBlueBitmap = Bitmap.createBitmap(570, 570, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(mBlueBitmap);
+        SweepGradient mSweepGradient = new SweepGradient(
+                mCenterPoint.x, mCenterPoint.y, DimmingLampConfig.mRgbColors, null);
+        mBgPaint.setShader(mSweepGradient);
+        canvas.drawCircle(mCenterPoint.x, mCenterPoint.y, mWidth / 2, mBgPaint);
+        mBlueBitmap = BlurBitmapUtil.blurBitmap(getContext(), mBlueBitmap, 20);
     }
 
     /**
@@ -48,10 +72,20 @@ public class DraggingBallRGBView extends DraggingBallView {
     public void drawBg(Canvas canvas) {
         // 直接画背景图
         //mBgDrawable.draw(canvas);
-        SweepGradient mSweepGradient = new SweepGradient(
-                mCenterPoint.x, mCenterPoint.y, DimmingLampConfig.mRgbColors, null);
-        mBgPaint.setShader(mSweepGradient);
-        canvas.drawCircle(mCenterPoint.x, mCenterPoint.y, mWidth / 2, mBgPaint);
+//        SweepGradient mSweepGradient = new SweepGradient(
+//                mCenterPoint.x, mCenterPoint.y, DimmingLampConfig.mRgbColors, null);
+//        mBgPaint.setShader(mSweepGradient);
+//        canvas.drawCircle(mCenterPoint.x, mCenterPoint.y, mWidth / 2, mBgPaint);
+
+        //蒙版
+        if (mBlueBitmap != null) {
+            BitmapShader shader = new BitmapShader(mBlueBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            Matrix matrix = new Matrix();
+            matrix.postScale(mRectF.width() / mBlueBitmap.getWidth(), mRectF.height() / mBlueBitmap.getHeight());
+            shader.setLocalMatrix(matrix);
+            mBluePaint.setShader(shader);
+            canvas.drawCircle(mRectF.width() / 2, mRectF.width() / 2, mRectF.width() / 2-5, mBluePaint);
+        }
     }
 
     private int curColorIndex;
@@ -138,10 +172,6 @@ public class DraggingBallRGBView extends DraggingBallView {
         //LogUtil.e(TAG, "angleA:" + angleA);
         return angleA;
     }
-
-    private float perDegrees;
-    private float allDegrees = (float) (2.0f * Math.PI);
-    private int mDottedLineCount = 180;
 
     /**
      * 设置进度
