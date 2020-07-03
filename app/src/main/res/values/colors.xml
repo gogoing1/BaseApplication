@@ -36,6 +36,7 @@
     <color name="color_dimming_offset_2">#FFF9FB</color>
     <color name="color_dimming_offset_3">#FFAE54</color>
 
+    <color name="color_knob_bg">#DBDEE9FF</color>
 
     <color name="color_dimming_list_1">#c8d8ff</color>
     <color name="color_dimming_list_2">#cbdaff</color>

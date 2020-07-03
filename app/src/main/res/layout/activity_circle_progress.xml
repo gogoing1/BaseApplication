@@ -8,12 +8,17 @@
     tools:context=".MainActivity"
     tools:ignore="ResAuto">
 
-    <com.github.mmin18.widget.RealtimeBlurView
-        android:id="@+id/blur_view"
+<!--    <com.github.mmin18.widget.RealtimeBlurView-->
+<!--        android:id="@+id/blur_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:realtimeBlurRadius="20dp"-->
+<!--        app:realtimeOverlayColor="#DBDEE9FF" />-->
+
+    <com.example.chenq.util.BlurView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:realtimeBlurRadius="20dp"
-        app:realtimeOverlayColor="#DBDEE9FF" />
+        android:layout_height="match_parent"/>
+
 
     <com.example.chenq.widget.CircleProgressView
         android:id="@+id/circle_progress"
