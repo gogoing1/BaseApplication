@@ -7,4 +7,9 @@ package com.chenq.base.mvp;
  */
 public interface BasePresenter {
 
+    void onStart();
+
+    void onDestroy();
+
+    void onRequestData();
 }

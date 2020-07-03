@@ -5,12 +5,24 @@ package com.chenq.base.mvp;
  * Email: chenqwork@gmail.com
  * Desc:
  */
-public class BasePresenterImpl<T extends BasePresenter> implements BasePresenter {
+public abstract class BasePresenterImpl<V extends BaseView> implements BasePresenter {
 
-    private BaseView baseView;
+    protected static final String TAG = BasePresenterImpl.class.getName();
 
-    public BasePresenterImpl(BaseView view) {
-        baseView = view;
+    protected V mView;
+
+    public BasePresenterImpl(V view) {
+        mView = view;
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
     }
 
 }

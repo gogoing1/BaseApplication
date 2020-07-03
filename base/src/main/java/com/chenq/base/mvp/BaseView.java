@@ -9,4 +9,8 @@ public interface BaseView<T> {
 
     void refreshView(T t);
 
+    void showToast(String msg);
+
+    void showLoadingDialog();
+
 }
