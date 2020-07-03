@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public abstract class AbstractActivity extends AppCompatActivity {
 
+    private static final String TAG = "AbstractActivity";
+
     protected AbstractActivity mContext;
     private float startTouchOffset;
     private float mStartTouchX;
