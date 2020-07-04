@@ -49,6 +49,10 @@
         <activity
             android:name=".activity.SwipeBackActivity"
             android:theme="@style/SlidableTheme" />
+
+        <activity
+            android:name=".activity.CircleProgress2Activity"
+            android:theme="@style/SlidableTheme" />
     </application>
 
 </manifest>

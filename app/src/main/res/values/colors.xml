@@ -27,6 +27,15 @@
     <color name="color_rainbow_8">#ffb938</color>
     <color name="color_rainbow_9">#FFD425</color>
 
+    <color name="color_air_bg_start">#1E2229</color>
+    <color name="color_air_bg_end">#0D0F12</color>
+    <color name="color_air_progress_top">#4AEEEEEE</color>
+    <color name="color_air_progress_bottom">#D8D8D8</color>
+    <color name="color_air_progress_nor_top">#656565</color>
+    <color name="color_air_progress_nor_bottom">#2F2F2F</color>
+    <color name="color_air_progress_select_top">#BEA06F</color>
+    <color name="color_air_progress_select_bottom">#604322</color>
+
     <color name="color_dimming_vertical_seek_bg">#EBECF0</color>
     <color name="color_dimming_seek_percent">#D7A468</color>
     <color name="color_dimming_seek_offset_top">#FFE7BF</color>

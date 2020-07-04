@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.example.myapplication"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/shape_air_bg"
+    android:layout_height="match_parent"
+    tools:ignore="ResAuto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.example.chenq.widget.AirCircleProgressView
+        android:id="@+id/ac_progress_view"
+        android:layout_width="650px"
+        android:layout_height="650px"
+        android:layout_centerInParent="true" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/sb_circle_progress"
+        android:layout_width="260dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:max="100"
+        android:min="0" />
+
+</RelativeLayout>

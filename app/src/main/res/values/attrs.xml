@@ -53,4 +53,9 @@
         <attr format="color" name="realtimeOverlayColor"/>
     </declare-styleable>
 
+    <declare-styleable name="AirCircleProgressView">
+        <attr name="color_normal" format="color" />
+        <attr name="color_select" format="color" />
+    </declare-styleable>
+
 </resources>

@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import com.chenq.base.AbstractActivity;
 import com.example.chenq.activity.BroadcastActivity;
+import com.example.chenq.activity.CircleProgress2Activity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.DraggingBallActivity;
 import com.example.chenq.activity.LyricActivity;
@@ -29,6 +30,7 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
     private Button mVerticalSeekBarBtn;
     private Button mDraggingBallBtn;
     private Button mSwipeBtn;
+    private Button mProgressBar2Btn;
 
     @Override
     protected int setContentView() {
@@ -55,6 +57,8 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
         mDraggingBallBtn.setOnClickListener(this);
         mSwipeBtn = findViewById(R.id.btn_swipe_act);
         mSwipeBtn.setOnClickListener(this);
+        mProgressBar2Btn = findViewById(R.id.btn_circle_progress2);
+        mProgressBar2Btn.setOnClickListener(this);
     }
 
     @Override
@@ -80,6 +84,9 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
                 break;
             case R.id.btn_swipe_act:
                 SwipeBackActivity.start(this);
+                break;
+            case R.id.btn_circle_progress2:
+                CircleProgress2Activity.start(this);
                 break;
             default:
                 break;
