@@ -21,8 +21,6 @@ import com.example.chenq.activity.VerticalSeekBarActivity;
  */
 public class MainActivity extends AbstractActivity implements View.OnClickListener {
 
-    private static final String TAG = "MainActivity";
-
     private Button mCircleProgressBtn;
     private Button mLyricBtn;
     private Button mBroadcastBtn;
