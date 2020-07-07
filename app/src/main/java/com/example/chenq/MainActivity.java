@@ -60,6 +60,11 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_circle_progress:

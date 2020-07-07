@@ -72,6 +72,11 @@ public class CircleProgress2Activity extends AbstractMVPActivity implements Circ
     }
 
     @Override
+    protected void initData() {
+
+    }
+
+    @Override
     public void setCircleProgress(int progress) {
         LogUtil.e(TAG, "setCircleProgress .");
     }

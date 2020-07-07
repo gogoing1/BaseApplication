@@ -2,6 +2,7 @@ package com.chenq.base;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,9 +56,15 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     protected abstract void bindViews(Bundle savedInstanceState);
 
+    protected abstract void initData();
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(ev.getAction()==MotionEvent.ACTION_DOWN&&isCloseSoftInputEventOnTouch()){
+            View v = getCurrentFocus();
+            
+        }
+
         if (swipeBackEnable) {
             if (isGoingSwipeBack) {
                 if (ev.getAction() == MotionEvent.ACTION_UP) isGoingSwipeBack = false;
@@ -102,6 +109,14 @@ public abstract class AbstractActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.push_in_from_right, R.anim.alpha_out);
+    }
+
+    /**
+     * 是否触摸关闭软键盘（默认开启，可重写关闭）
+     * @return
+     */
+    protected boolean isCloseSoftInputEventOnTouch(){
+        return true;
     }
 
 }
