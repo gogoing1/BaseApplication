@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_default_btn_style"
                 android:text="progress bar2"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_lyric"
@@ -91,6 +91,15 @@
                 android:background="@drawable/shape_default_btn_style"
                 android:text="textView"
                 android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_soft_input_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_default_btn_style"
+                android:text="SoftInputTest"
+                android:visibility="visible" />
         </LinearLayout>
     </ScrollView>
 

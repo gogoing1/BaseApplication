@@ -39,7 +39,7 @@ public class LyricUtil {
     public LyricInfo parse(String fileUrl) {
         reSet();
         if (fileUrl.isEmpty()) {
-            LogUtil.e(TAG, "parse error,the lyric fileUrl is empty");
+            LogUtils.e(TAG, "parse error,the lyric fileUrl is empty");
             return null;
         }
 
@@ -68,7 +68,7 @@ public class LyricUtil {
                 e.printStackTrace();
             }
         } else {
-            LogUtil.e(TAG, "parse LyricFile on File not found Exception.");
+            LogUtils.e(TAG, "parse LyricFile on File not found Exception.");
         }
         return mLyricInfo;
     }
@@ -138,7 +138,7 @@ public class LyricUtil {
      */
     public String getCurLyricContent(LyricInfo info, long curPlayMillis) {
         if (info == null) {
-            LogUtil.e(TAG, "getCurLyricContent lyricInfo is empty.");
+            LogUtils.e(TAG, "getCurLyricContent lyricInfo is empty.");
             return null;
         }
         List<LyricUtil.LineInfo> lineList = info.getSongLines();

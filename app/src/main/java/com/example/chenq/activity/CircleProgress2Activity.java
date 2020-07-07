@@ -13,9 +13,8 @@ import com.chenq.base.mvp.BasePresenter;
 import com.example.chenq.R;
 import com.example.chenq.presenter.CircleProgress2Contract;
 import com.example.chenq.presenter.CircleProgress2PresenterImpl;
-import com.example.chenq.util.LogUtil;
+import com.example.chenq.util.LogUtils;
 import com.example.chenq.widget.AirCircleProgressView;
-import com.example.chenq.widget.CircleProgressView;
 
 /**
  * create by chenqi on 2020/7/3
@@ -72,12 +71,7 @@ public class CircleProgress2Activity extends AbstractMVPActivity implements Circ
     }
 
     @Override
-    protected void initData() {
-
-    }
-
-    @Override
     public void setCircleProgress(int progress) {
-        LogUtil.e(TAG, "setCircleProgress .");
+        LogUtils.e(TAG, "setCircleProgress .");
     }
 }

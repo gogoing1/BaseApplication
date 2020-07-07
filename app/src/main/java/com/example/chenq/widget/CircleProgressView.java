@@ -25,7 +25,7 @@ import android.view.animation.DecelerateInterpolator;
 import com.example.chenq.R;
 import com.example.chenq.interfaces.AnimatorListenerImpl;
 import com.example.chenq.util.DrawableUtil;
-import com.example.chenq.util.LogUtil;
+import com.example.chenq.util.LogUtils;
 
 
 /**
@@ -519,7 +519,7 @@ public class CircleProgressView extends View {
      */
     public void refreshView(int targetProgress) {
         if (targetProgress < 0 || targetProgress > 100) {
-            LogUtil.e(TAG, "progress index out of bounds exception");
+            LogUtils.e(TAG, "progress index out of bounds exception");
             return;
         }
 
@@ -528,13 +528,13 @@ public class CircleProgressView extends View {
         curAnimRotateDegrees = getCurRotateDegrees() - curRotateDegrees;
         final float curDegrees = curRotateDegrees;
 
-        LogUtil.e(TAG, "-------------------------------------------------");
-        LogUtil.e(TAG, "curDegrees:-------- " + curDegrees + " curAnimRotateDegrees:" + curAnimRotateDegrees);
+        LogUtils.e(TAG, "-------------------------------------------------");
+        LogUtils.e(TAG, "curDegrees:-------- " + curDegrees + " curAnimRotateDegrees:" + curAnimRotateDegrees);
 
         //startAnimator(curDegrees);
         //不使用动画，直接绘制
         curRotateDegrees = curDegrees + curAnimRotateDegrees;
-        LogUtil.e(TAG, "curRotateDegrees:" + curRotateDegrees);
+        LogUtils.e(TAG, "curRotateDegrees:" + curRotateDegrees);
         //指针
         curPointerDegrees = getCurPointerDegrees();
         invalidate();
@@ -549,7 +549,7 @@ public class CircleProgressView extends View {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = ((int) animation.getAnimatedValue()) / 100.00f;
                 curRotateDegrees = curDegrees + curAnimRotateDegrees * value;
-                LogUtil.e(TAG, "curRotateDegrees:" + curRotateDegrees);
+                LogUtils.e(TAG, "curRotateDegrees:" + curRotateDegrees);
                 if (checkRotateDegrees()) {
                     invalidate();
                 }
@@ -589,7 +589,7 @@ public class CircleProgressView extends View {
             //degrees = (mValue - 50) / 50 * 270 / 2;
             degrees = mValue / 50 * (sumDegreed - endDegrees) + endDegrees;
         }
-        LogUtil.e(TAG, "mPointerDegrees " + degrees);
+        LogUtils.e(TAG, "mPointerDegrees " + degrees);
         return degrees;
     }
 

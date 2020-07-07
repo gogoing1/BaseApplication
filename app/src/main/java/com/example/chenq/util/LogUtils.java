@@ -12,7 +12,7 @@ import java.io.IOException;
  * 将输出日志等级大于 {@link Log.VERBOSE} 的日志写入sd卡
  * 输出路径 /sdcard/Log.html
  */
-final public class LogUtil {
+final public class LogUtils {
     public static final boolean COLLECT_LOG_TO_SDCARD = false;
     private final static int sLogLevel = Log.VERBOSE;//Log.VERBOSE~Log.ASSERT
     private final static String MYLOG_PATH_SDCARD_DIR = "/sdcard/";

@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -15,8 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
 import com.example.chenq.util.DimmingLampConfig;
-import com.example.chenq.util.DrawableUtil;
-import com.example.chenq.util.LogUtil;
+import com.example.chenq.util.LogUtils;
 
 
 /**
@@ -71,7 +69,7 @@ public class DraggingBallView extends TouchCallbackView {
         mCenterPoint = new Point(mWidth / 2, mHeight / 2);
         mTouchPoint = new Point(mCenterPoint);
         mBallCenterPoint = new Point(mCenterPoint);
-        LogUtil.e(TAG, "mBallCenterPoint init" + mBallCenterPoint.x + " " + mBallCenterPoint.y);
+        LogUtils.e(TAG, "mBallCenterPoint init" + mBallCenterPoint.x + " " + mBallCenterPoint.y);
         mCoverRect = new Rect(0, 0, mWidth, mHeight);
         //mCoverDrawable = DrawableUtil.getDrawable(mContext, R.mipmap.bg_circle_grey_cover);
         //硬件加速会导致阴影不起作用，这里对其禁用，切勿在onDraw里面设置，那样会引起无限重绘
@@ -175,7 +173,7 @@ public class DraggingBallView extends TouchCallbackView {
     public void setProgress(int progress) {
         int y = (int) (mBallWidth / 2 + (mHeight - mBallWidth) * (1 - 1.00 * progress / 100));
         mBallCenterPoint.set(mCenterPoint.x, y);
-        LogUtil.e(TAG, "setProgress ball_x" + mCenterPoint.x + "   ball_y" + y + " progress:" + progress);
+        LogUtils.e(TAG, "setProgress ball_x" + mCenterPoint.x + "   ball_y" + y + " progress:" + progress);
         postInvalidate();
     }
 

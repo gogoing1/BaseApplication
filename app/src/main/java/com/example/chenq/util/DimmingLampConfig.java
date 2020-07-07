@@ -1228,7 +1228,7 @@ public class DimmingLampConfig {
         float green = g[i];
         float blue = b[i];
         String color = toHex((int) red, (int) green, (int) blue);
-        LogUtil.e(TAG, color);
+        LogUtils.e(TAG, color);
         return Color.parseColor(color);
     }
 

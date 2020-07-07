@@ -56,13 +56,11 @@ public abstract class AbstractActivity extends AppCompatActivity {
 
     protected abstract void bindViews(Bundle savedInstanceState);
 
-    protected abstract void initData();
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(ev.getAction()==MotionEvent.ACTION_DOWN&&isCloseSoftInputEventOnTouch()){
             View v = getCurrentFocus();
-            
+
         }
 
         if (swipeBackEnable) {

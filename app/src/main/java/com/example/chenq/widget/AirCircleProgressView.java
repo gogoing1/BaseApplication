@@ -6,7 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,7 +14,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
-import com.example.chenq.util.LogUtil;
+import com.example.chenq.util.LogUtils;
 
 /**
  * create by chenqi on 2020/7/4
@@ -177,7 +176,7 @@ public class AirCircleProgressView extends View {
             isSelect = !(curDegrees <= startDegrees);
         }
         if (isSelect) {
-            LogUtil.e(TAG, "curDegrees:" + curDegrees + " curPointerDegrees:" + curPointerDegrees + " endDegrees:" + endDegrees);
+            LogUtils.e(TAG, "curDegrees:" + curDegrees + " curPointerDegrees:" + curPointerDegrees + " endDegrees:" + endDegrees);
         }
 
         mStrokePaint.setColor(isSelect ? mStrokeColorSelect : mStrokeColorNormal);
@@ -193,7 +192,7 @@ public class AirCircleProgressView extends View {
             case MotionEvent.ACTION_MOVE:
                 if (checkInArcArea(x, y)) {
                     double touchDegrees = getBallArc(x, y);
-                    LogUtil.e(TAG, "touchDegrees:" + touchDegrees + " startDegrees:" + startDegrees + " endDegrees:" + endDegrees + " sumDegrees:" + sumDegrees);
+                    LogUtils.e(TAG, "touchDegrees:" + touchDegrees + " startDegrees:" + startDegrees + " endDegrees:" + endDegrees + " sumDegrees:" + sumDegrees);
 
                     if (touchDegrees >= endDegrees || touchDegrees <= startDegrees) {
                         curPointerDegrees = (float) touchDegrees;
@@ -202,7 +201,7 @@ public class AirCircleProgressView extends View {
                         } else if (touchDegrees <= startDegrees) {
                             mProgress = 50 + (int) (touchDegrees / (sumDegrees - endDegrees) * 50);
                         }
-                        LogUtil.e(TAG, "mProgress---" + mProgress + " curPointerDegrees:" + curPointerDegrees);
+                        LogUtils.e(TAG, "mProgress---" + mProgress + " curPointerDegrees:" + curPointerDegrees);
                         postInvalidate();
                     }
                 }
@@ -342,7 +341,7 @@ public class AirCircleProgressView extends View {
      * @param progress
      */
     public void onProgressChange(int progress) {
-        LogUtil.e(TAG, "onProgressChange: " + progress);
+        LogUtils.e(TAG, "onProgressChange: " + progress);
         mProgress = progress;
         setCurPointerDegrees(mProgress);
         postInvalidate();

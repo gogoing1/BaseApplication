@@ -36,4 +36,5 @@ dependencies {
 
     // 依赖
     implementation project(path: ':base')
+    implementation project(path: ':library')
 }

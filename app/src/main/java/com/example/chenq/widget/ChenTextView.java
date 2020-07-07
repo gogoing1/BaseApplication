@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.example.chenq.R;
-import com.example.chenq.util.LogUtil;
+import com.example.chenq.util.LogUtils;
 
 /**
  * create by chenqi on 2020/6/15
@@ -55,20 +55,20 @@ public class ChenTextView extends View {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightModel = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        LogUtil.d(TAG, "onMeasure " + "widthMode " + widthMode + " widthSize " + widthSize + " heightModel " + heightModel + " heightSize " + heightSize);
+        LogUtils.d(TAG, "onMeasure " + "widthMode " + widthMode + " widthSize " + widthSize + " heightModel " + heightModel + " heightSize " + heightSize);
 
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        LogUtil.d(TAG, "onLayout " + "changed " + changed + " left " + left + " top " + top + " right " + right + " bottom " + bottom);
+        LogUtils.d(TAG, "onLayout " + "changed " + changed + " left " + left + " top " + top + " right " + right + " bottom " + bottom);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        LogUtil.d(TAG, "onSizeChanged " + "w " + w + " h " + h + " old_w " + oldw + " old_h " + oldh);
+        LogUtils.d(TAG, "onSizeChanged " + "w " + w + " h " + h + " old_w " + oldw + " old_h " + oldh);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.example.chenq.presenter;
 
 import com.chenq.base.mvp.BaseView;
-import com.example.chenq.util.LogUtil;
+import com.example.chenq.util.LogUtils;
 
 /**
  * create by chenqi on 2020/7/3
@@ -16,16 +16,16 @@ public class CircleProgress2PresenterImpl extends CircleProgress2Contract.Presen
 
     @Override
     public void onStart() {
-        LogUtil.e(TAG,"CircleProgress 2 on onStart");
+        LogUtils.e(TAG,"CircleProgress 2 on onStart");
     }
 
     @Override
     public void onDestroy() {
-        LogUtil.e(TAG,"CircleProgress 2 on onDestroy");
+        LogUtils.e(TAG,"CircleProgress 2 on onDestroy");
     }
 
     @Override
     public void onRequestData() {
-        LogUtil.e(TAG,"CircleProgress 2 on Request Data.");
+        LogUtils.e(TAG,"CircleProgress 2 on Request Data.");
     }
 }
