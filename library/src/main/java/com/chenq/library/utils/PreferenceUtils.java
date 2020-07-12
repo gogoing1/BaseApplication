@@ -30,8 +30,8 @@ public class PreferenceUtils {
      * @param value
      */
     public static void putPrefString(Context context, final String key, final String value) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        settings.edit().putString(key, value).commit();
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        sp.edit().putString(key, value).commit();
     }
 
     /**
@@ -43,8 +43,8 @@ public class PreferenceUtils {
      * @return
      */
     public static String getPrefString(Context context, String key, final String defaultValue) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        return settings.getString(key, defaultValue);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getString(key, defaultValue);
     }
 
     /**
@@ -55,8 +55,8 @@ public class PreferenceUtils {
      * @param value
      */
     public static void putPrefBoolean(Context context, final String key, final boolean value) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        settings.edit().putBoolean(key, value).commit();
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        sp.edit().putBoolean(key, value).commit();
     }
 
     /**
@@ -68,8 +68,8 @@ public class PreferenceUtils {
      * @return
      */
     public static boolean getPrefBoolean(Context context, final String key, final boolean defaultValue) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        return settings.getBoolean(key, defaultValue);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getBoolean(key, defaultValue);
     }
 
     /**
@@ -80,8 +80,8 @@ public class PreferenceUtils {
      * @param value
      */
     public static void putPrefInt(Context context, final String key, final int value) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        settings.edit().putInt(key, value).commit();
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        sp.edit().putInt(key, value).commit();
     }
 
     /**
@@ -93,8 +93,8 @@ public class PreferenceUtils {
      * @return
      */
     public static int getPrefInt(Context context, final String key, final int defaultValue) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        return settings.getInt(key, defaultValue);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getInt(key, defaultValue);
     }
 
     /**
@@ -105,8 +105,8 @@ public class PreferenceUtils {
      * @param value
      */
     public static void putPrefFloat(Context context, final String key, final float value) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        settings.edit().putFloat(key, value).commit();
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        sp.edit().putFloat(key, value).commit();
     }
 
     /**
@@ -118,8 +118,8 @@ public class PreferenceUtils {
      * @return
      */
     public static float getPrefFloat(Context context, final String key, final float defaultValue) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        return settings.getFloat(key, defaultValue);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getFloat(key, defaultValue);
     }
 
     /**
@@ -130,8 +130,8 @@ public class PreferenceUtils {
      * @param value
      */
     public static void setPrefLong(Context context, final String key, final long value) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        settings.edit().putLong(key, value).commit();
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        sp.edit().putLong(key, value).commit();
     }
 
     /**
@@ -143,8 +143,8 @@ public class PreferenceUtils {
      * @return
      */
     public static long getPrefLong(Context context, final String key, final long defaultValue) {
-        final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-        return settings.getLong(key, defaultValue);
+        final SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        return sp.getLong(key, defaultValue);
     }
 
     /**
