@@ -8,11 +8,11 @@
     tools:ignore="ResAuto">
 
 
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:scaleType="fitXY"-->
-<!--        android:src="@mipmap/test_bg"/>-->
+    <!--    <ImageView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:scaleType="fitXY"-->
+    <!--        android:src="@mipmap/test_bg"/>-->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -99,7 +99,15 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shape_default_btn_style"
                 android:text="SoftInputTest"
-                android:visibility="visible" />
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_music"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_default_btn_style"
+                android:text="music" />
         </LinearLayout>
     </ScrollView>
 

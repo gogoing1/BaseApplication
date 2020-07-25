@@ -14,6 +14,7 @@ import com.example.chenq.activity.SoftInputActivity;
 import com.example.chenq.activity.SwipeBackActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
+import com.example.chenq.music.MusicActivity;
 
 /**
  * create by chenqi on 2020/6/11
@@ -31,6 +32,7 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
     private Button mSwipeBtn;
     private Button mProgressBar2Btn;
     private Button mSoftTestBtn;
+    private Button mMusicBtn;
 
     @Override
     protected int setContentView() {
@@ -61,6 +63,8 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
         mProgressBar2Btn.setOnClickListener(this);
         mSoftTestBtn = findViewById(R.id.btn_soft_input_test);
         mSoftTestBtn.setOnClickListener(this);
+        mMusicBtn = findViewById(R.id.btn_music);
+        mMusicBtn.setOnClickListener(this);
     }
 
 
@@ -93,6 +97,9 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
                 break;
             case R.id.btn_circle_progress2:
                 CircleProgress2Activity.start(this);
+                break;
+            case R.id.btn_music:
+                MusicActivity.start(this);
                 break;
             default:
                 break;

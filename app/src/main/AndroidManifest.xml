@@ -57,6 +57,10 @@
         <activity
             android:name=".activity.CircleProgress2Activity"
             android:theme="@style/SlidableTheme" />
+
+        <activity
+            android:name=".music.MusicActivity"
+            android:theme="@style/SlidableTheme" />
     </application>
 
 </manifest>
