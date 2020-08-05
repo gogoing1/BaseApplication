@@ -2,9 +2,12 @@ package com.example.chenq;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.chenq.base.AbstractActivity;
+import com.example.chenq.activity.BlurActivity;
 import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgress2Activity;
 import com.example.chenq.activity.CircleProgressActivity;
@@ -15,6 +18,8 @@ import com.example.chenq.activity.SwipeBackActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
 import com.example.chenq.activity.ViewPagerActivity;
+import com.example.chenq.adapter.MainListAdapter;
+import com.example.chenq.constant.MainConstant;
 import com.example.chenq.music.MusicActivity;
 
 /**
@@ -22,19 +27,8 @@ import com.example.chenq.music.MusicActivity;
  * Email: chenqwork@gmail.com
  * Desc:
  */
-public class MainActivity extends AbstractActivity implements View.OnClickListener {
-
-    private Button mCircleProgressBtn;
-    private Button mLyricBtn;
-    private Button mBroadcastBtn;
-    private Button mTextBtn;
-    private Button mVerticalSeekBarBtn;
-    private Button mDraggingBallBtn;
-    private Button mSwipeBtn;
-    private Button mProgressBar2Btn;
-    private Button mSoftTestBtn;
-    private Button mMusicBtn;
-    private Button mViewPagerBtn;
+public class MainActivity extends AbstractActivity {
+    private ListView listView;
 
     @Override
     protected int setContentView() {
@@ -47,72 +41,56 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
     }
 
     private void initView() {
-        mCircleProgressBtn = findViewById(R.id.btn_circle_progress);
-        mCircleProgressBtn.setOnClickListener(this);
-        mLyricBtn = findViewById(R.id.btn_lyric);
-        mLyricBtn.setOnClickListener(this);
-        mBroadcastBtn = findViewById(R.id.btn_broadcast);
-        mBroadcastBtn.setOnClickListener(this);
-        mTextBtn = findViewById(R.id.btn_text);
-        mTextBtn.setOnClickListener(this);
-        mVerticalSeekBarBtn = findViewById(R.id.btn_vertical_seek_bar);
-        mVerticalSeekBarBtn.setOnClickListener(this);
-        mDraggingBallBtn = findViewById(R.id.btn_dragging_ball);
-        mDraggingBallBtn.setOnClickListener(this);
-        mSwipeBtn = findViewById(R.id.btn_swipe_act);
-        mSwipeBtn.setOnClickListener(this);
-        mProgressBar2Btn = findViewById(R.id.btn_circle_progress2);
-        mProgressBar2Btn.setOnClickListener(this);
-        mSoftTestBtn = findViewById(R.id.btn_soft_input_test);
-        mSoftTestBtn.setOnClickListener(this);
-        mMusicBtn = findViewById(R.id.btn_music);
-        mMusicBtn.setOnClickListener(this);
-        mViewPagerBtn = findViewById(R.id.btn_view_pager);
-        mViewPagerBtn.setOnClickListener(this);
+        listView = findViewById(R.id.lv_main_list);
+        final MainListAdapter adapter = new MainListAdapter(mContext, R.layout.layout_list_item, MainConstant.getItemList());
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = adapter.getItem(position);
+                switch (item) {
+                    case MainConstant.BLUR_TEST:
+                        BlurActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_SOFT_INPUT_TEST:
+                        SoftInputActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_CIRCLE_PROGRESS:
+                        CircleProgressActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_LYRIC:
+                        LyricActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BROADCAST:
+                        BroadcastActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_TEXT:
+                        TextViewActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_VERTICAL_SEEK_BAR:
+                        VerticalSeekBarActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_DRAGGING_BALL:
+                        DraggingBallActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.SWIPE_ACT:
+                        SwipeBackActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_CIRCLE_PROGRESS2:
+                        CircleProgress2Activity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_MUSIC:
+                        MusicActivity.start(MainActivity.this);
+                        break;
+                    case MainConstant.BTN_VIEW_PAGER:
+                        ViewPagerActivity.start(MainActivity.this);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_soft_input_test:
-                SoftInputActivity.start(this);
-                break;
-            case R.id.btn_circle_progress:
-                CircleProgressActivity.start(this);
-                break;
-            case R.id.btn_lyric:
-                LyricActivity.start(this);
-                break;
-            case R.id.btn_broadcast:
-                BroadcastActivity.start(this);
-                break;
-            case R.id.btn_text:
-                TextViewActivity.start(this);
-                break;
-            case R.id.btn_vertical_seek_bar:
-                VerticalSeekBarActivity.start(this);
-                break;
-            case R.id.btn_dragging_ball:
-                DraggingBallActivity.start(this);
-                break;
-            case R.id.btn_swipe_act:
-                SwipeBackActivity.start(this);
-                break;
-            case R.id.btn_circle_progress2:
-                CircleProgress2Activity.start(this);
-                break;
-            case R.id.btn_music:
-                MusicActivity.start(this);
-                break;
-            case R.id.btn_view_pager:
-                ViewPagerActivity.start(this);
-                break;
-            default:
-                break;
-        }
-    }
-
 
     @Override
     public boolean setSwipeBack() {

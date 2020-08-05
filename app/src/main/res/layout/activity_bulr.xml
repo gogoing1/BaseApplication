@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/a6" />
+
+    <RelativeLayout
+        android:layout_width="720px"
+        android:layout_height="720px"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/top_page_bg"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10px"
+        android:layout_marginLeft="80px"
+        android:orientation="horizontal">
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="100dp"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000" />
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#4D2B2B2B"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="410px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#4D2B2B2B"  />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_below="@+id/ll_1"
+        android:layout_marginTop="20px">
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="100dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#4D6F6F6F"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="410px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#4D363636"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_below="@+id/ll_2"
+        android:layout_marginTop="20px">
+
+        <com.example.chenq.blur.CustomShapeBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000"
+            android:layout_alignParentBottom="true"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="410px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#4D424242"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_below="@+id/ll_3"
+        android:layout_marginTop="20px">
+
+        <com.example.chenq.blur.CustomShapeBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000"
+            android:layout_alignParentBottom="true"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="410px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#4D4d4d4d"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80px"
+        android:layout_below="@+id/ll_4"
+        android:layout_marginTop="20px">
+
+        <com.example.chenq.blur.CustomShapeBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000"
+            android:layout_alignParentBottom="true"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="200px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="#8000"/>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <com.example.chenq.blur.SettingBlurView
+            android:layout_width="410px"
+            android:layout_height="120px"
+            app:realtimeBlurRadius="1dp"
+            app:realtimeOverlayColor="#4D585858"/>
+    </LinearLayout>
+</RelativeLayout>

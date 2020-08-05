@@ -25,99 +25,17 @@
             android:orientation="vertical"
             android:padding="60dp">
 
-            <Button
-                android:id="@+id/btn_swipe_act"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="SwipeAct"
-                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/btn_dragging_ball"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="vertical seek bar"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_vertical_seek_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="vertical seek bar"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_circle_progress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="progress bar1"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_circle_progress2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="progress bar2"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_lyric"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="歌词"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_broadcast"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="broadcast"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="textView"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_soft_input_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="SoftInputTest"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_music"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="music"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/btn_view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_default_btn_style"
-                android:text="view_pager" />
         </LinearLayout>
     </ScrollView>
+
+
+    <ListView
+        android:id="@+id/lv_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/blue"
+        android:dividerHeight="1px"
+        android:scrollbars="none" />
 
 </RelativeLayout>

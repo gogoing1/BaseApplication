@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chenq.base.BaseActivity;
-import com.example.chenq.MainActivity;
 import com.example.chenq.R;
 import com.example.chenq.util.LogUtils;
 import com.example.chenq.widget.viewpager.MyPagerAdapter;
