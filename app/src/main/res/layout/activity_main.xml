@@ -107,7 +107,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/shape_default_btn_style"
-                android:text="music" />
+                android:text="music"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_default_btn_style"
+                android:text="view_pager" />
         </LinearLayout>
     </ScrollView>
 

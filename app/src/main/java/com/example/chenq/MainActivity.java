@@ -14,6 +14,7 @@ import com.example.chenq.activity.SoftInputActivity;
 import com.example.chenq.activity.SwipeBackActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
+import com.example.chenq.activity.ViewPagerActivity;
 import com.example.chenq.music.MusicActivity;
 
 /**
@@ -33,6 +34,7 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
     private Button mProgressBar2Btn;
     private Button mSoftTestBtn;
     private Button mMusicBtn;
+    private Button mViewPagerBtn;
 
     @Override
     protected int setContentView() {
@@ -65,6 +67,8 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
         mSoftTestBtn.setOnClickListener(this);
         mMusicBtn = findViewById(R.id.btn_music);
         mMusicBtn.setOnClickListener(this);
+        mViewPagerBtn = findViewById(R.id.btn_view_pager);
+        mViewPagerBtn.setOnClickListener(this);
     }
 
 
@@ -100,6 +104,9 @@ public class MainActivity extends AbstractActivity implements View.OnClickListen
                 break;
             case R.id.btn_music:
                 MusicActivity.start(this);
+                break;
+            case R.id.btn_view_pager:
+                ViewPagerActivity.start(this);
                 break;
             default:
                 break;
