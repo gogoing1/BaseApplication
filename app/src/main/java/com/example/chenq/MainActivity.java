@@ -1,5 +1,6 @@
 package com.example.chenq;
 
+import android.graphics.fonts.SystemFonts;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import com.example.chenq.activity.SwipeBackActivity;
 import com.example.chenq.activity.TextViewActivity;
 import com.example.chenq.activity.VerticalSeekBarActivity;
 import com.example.chenq.activity.ViewPagerActivity;
+import com.example.chenq.activity.WifiActivity;
 import com.example.chenq.adapter.MainListAdapter;
 import com.example.chenq.constant.MainConstant;
 import com.example.chenq.music.MusicActivity;
@@ -49,6 +51,9 @@ public class MainActivity extends AbstractActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = adapter.getItem(position);
                 switch (item) {
+                    case MainConstant.BTN_WIFI:
+                        WifiActivity.start(MainActivity.this);
+                        break;
                     case MainConstant.BLUR_TEST:
                         BlurActivity.start(MainActivity.this);
                         break;

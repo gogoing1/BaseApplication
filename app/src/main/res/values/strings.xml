@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Galaxy</string>
+
+    <string name="wifi_pwd_title_tips">请输入\" %s \"的密码</string>
 </resources>

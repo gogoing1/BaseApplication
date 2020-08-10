@@ -22,9 +22,11 @@ public class MainConstant {
     public static final String BTN_SOFT_INPUT_TEST = "BTN_SOFT_INPUT_TEST";
     public static final String BTN_MUSIC = "BTN_MUSIC";
     public static final String BTN_VIEW_PAGER = "BTN_VIEW_PAGER";
+    public static final String BTN_WIFI = "BTN_WIFI";
 
     public static List<String> getItemList() {
         String[] s = new String[]{
+                BTN_WIFI,
                 BLUR_TEST,
                 SWIPE_ACT,
                 BTN_DRAGGING_BALL,

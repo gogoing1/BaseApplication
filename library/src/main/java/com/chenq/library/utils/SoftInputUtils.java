@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+
 /**
  * create by chenqi on 2020/7/7
  * Email: chenqwork@gmail.com
@@ -31,16 +33,14 @@ public class SoftInputUtils {
     }
 
     /**
-     * 关闭软键盘
+     * 隐藏软键盘(有输入框)
      *
      * @param context
-     * @param focusView
+     * @param mEditText
      */
-    public static void closeSoftInput(Context context, final View focusView) {
-        if (focusView == null) return;
-        final InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
-        focusView.clearFocus();
+    public static void hideSoftKeyboard(@NonNull Context context, @NonNull EditText mEditText) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
     }
 
     public static boolean isActive(Context context, View view) {
