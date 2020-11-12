@@ -79,7 +79,7 @@
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/shape"
+        android:background="@drawable/wifi_shape_bg"
         android:visibility="invisible" >
 
         <TextView
