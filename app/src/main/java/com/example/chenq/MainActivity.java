@@ -13,6 +13,7 @@ import com.example.chenq.activity.BroadcastActivity;
 import com.example.chenq.activity.CircleProgress2Activity;
 import com.example.chenq.activity.CircleProgressActivity;
 import com.example.chenq.activity.DraggingBallActivity;
+import com.example.chenq.activity.InfiniteViewActivity;
 import com.example.chenq.activity.LyricActivity;
 import com.example.chenq.activity.SoftInputActivity;
 import com.example.chenq.activity.SwipeBackActivity;
@@ -51,6 +52,9 @@ public class MainActivity extends AbstractActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = adapter.getItem(position);
                 switch (item) {
+                    case MainConstant.BTN_INFINITE_RECYCLE_VIEW:
+                        InfiniteViewActivity.start(MainActivity.this);
+                        break;
                     case MainConstant.BTN_WIFI:
                         WifiActivity.start(MainActivity.this);
                         break;

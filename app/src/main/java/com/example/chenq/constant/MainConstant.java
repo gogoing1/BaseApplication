@@ -23,9 +23,11 @@ public class MainConstant {
     public static final String BTN_MUSIC = "BTN_MUSIC";
     public static final String BTN_VIEW_PAGER = "BTN_VIEW_PAGER";
     public static final String BTN_WIFI = "BTN_WIFI";
+    public static final String BTN_INFINITE_RECYCLE_VIEW = "BTN_INFINITE_RECYCLE_VIEW";
 
     public static List<String> getItemList() {
         String[] s = new String[]{
+                BTN_INFINITE_RECYCLE_VIEW,
                 BTN_WIFI,
                 BLUR_TEST,
                 SWIPE_ACT,
